@@ -1,0 +1,21 @@
+.left-padding {
+  padding-left: 5px !important;
+}
+
+.right-padding {
+  padding-right: 5px !important;
+}
+
+
+
+body{
+  background-image: url(https://images.unsplash.com/photo-1589714299622-6c46cf8b71fd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.findbtn {
+  background-color: transparent;
+}
