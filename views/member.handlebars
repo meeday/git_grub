@@ -1,41 +1,87 @@
 {{!-- search --}}
-<div class="row">
-        <a href="#" data-target="slide-out" class="sidenav-trigger waves-effect waves-light findbtn btn-large white-text">
-            <i class="material-icons left">menu</i>Menu
-        </a>
+<!-- TOP ROW BUTTON -->
+  <div class="row">
+    <!-- Side Nav Button -->
+    <a href="#" data-target="slide-out" class="sidenav-trigger waves-effect waves-light findbtn btn-large white-text">
+      <i class="material-icons left">menu</i>Menu
+    </a>
+  </div>
+
+<!-- SECONDARY FUNCTION STRUCTURE START HERE -->
+
+    <!-- Side Nav Structure -->
+  <ul id="slide-out" class="sidenav">
+      <li><div class="user-view">
+        <div class="background">
+          <img src="https://image.freepik.com/free-psd/arrangement-fast-food-wooden-background_23-2148321316.jpg">
+        </div>
+        <!-- User Detail after login -->
+        <!-- CAUTION!!! PLACE HOLDER CONTAINED!!!! -->
+        <a href="#user"><img class="circle" id="user-icon" src="https://gamepedia.cursecdn.com/minecraft_zh_gamepedia/a/a8/Written_Book_JE2_BE2.png?version=da7c471901b081f6bc9309cfd9891c29"></a>
+        <a href="#name"><span class="white-text name" id="user-name">John Doe</span></a>
+        <a href="#email"><span class="white-text email" id="user-email">jdandturk@gmail.com</span></a>
+      </div></li>
+      <li><a class="subheader">GET RECIPE~</a></li>
+      <li><a href="search.html"><i class="material-icons">search</i>Search Recipe</a></li>
+      <li><a href="dashboard.html"><i class="material-icons">menu_book</i>Recipe Dashboard</a></li>
+  </ul>
+
+<!-- SECONDARY FUNCTION STRUCTURE END HERE -->
+
+  
+  <!-- Search Template -->
+  <div class="container landing-page">
+      <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+          <h1 class="center white-text">Get Grub</h1>
+          <div class="row center">
+          </div>
+        </div>
+      </div>
+
+      <div id="default-search-input" class="input-field col s12">
+        <a href="#!" id="search-icon" class="material-icons white-text prefix">search</a>
+        <input type="text" id="search-query" class="autocomplete white-text" />
+        <label class="white-text" for="search-query">Search</label>
+      </div>
+      <br>
+  <!-- Cuisine Form -->
+    <div style="display: none;" id="cuisine-dropdown" class="input-field col s12">
+      <select multiple>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+      <label class="white-text">Cuisine</label>
     </div>
 
-    <!-- Content in sidenav -->
-    <ul id="slide-out" class="sidenav">
-        <li><div class="user-view">
-          <div class="background">
-            <img src="https://image.freepik.com/free-psd/arrangement-fast-food-wooden-background_23-2148321316.jpg">
-          </div>
-          <!-- User Detail after login -->
-          <!-- CAUTION!!! PLACE HOLDER CONTAINED!!!! -->
-          <a href="#user"><img class="circle" id="user-icon" src="https://gamepedia.cursecdn.com/minecraft_zh_gamepedia/a/a8/Written_Book_JE2_BE2.png?version=da7c471901b081f6bc9309cfd9891c29"></a>
-          <a href="#name"><span class="white-text name" id="user-name">John Doe</span></a>
-          <a href="#email"><span class="white-text email" id="user-email">jdandturk@gmail.com</span></a>
-        </div></li>
-        <li><a class="subheader">GET RECIPE~</a></li>
-        <li><a href="search.html"><i class="material-icons">search</i>Search Recipe</a></li>
-        <li><a href="/dashboard"><i class="material-icons">menu_book</i>Recipe Dashboard</a></li>
-    </ul>
-    
-    <!-- Search Template -->
-    <div class="container landing-page">
-        <div class="section no-pad-bot" id="index-banner">
-          <div class="container">
-            <h1 class="center white-text">Get Grub</h1>
-  
-            <div class="row center">
-            </div>
-          </div>
-        </div>
-  
-        <div id="default-search-input" class="input-field col s12">
-          <i id="search-icon" class="material-icons white-text prefix">search</i>
-          <input type="text" id="search-query" class="autocomplete white-text" />
-          <label class="white-text" for="search-query">Search </label>
-        </div>
+  <!-- Intolerance Form -->
+    <div style="display: none;" id="intolerance-dropdown" class="input-field col s12">
+      <select multiple>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+      <label class="white-text">Intolerance</label>
     </div>
+
+
+  <!-- Select Button -->
+    <form action="#" id="query-selection">
+        <label>
+          <input id="cuisine-btn" name="group1" type="radio" class="with-gap"/>
+          <span class="query-type default-query white-text">Cuisine</span>
+        </label>
+
+        <label>
+          <input id="intolerance-btn" name="group1" type="radio" class="with-gap"/>
+          <span class="query-type default-query white-text">Intolerance</span>
+        </label>
+
+        <label>
+          <input id="diet-btn" name="group1" type="radio" class="with-gap"/>
+          <span class="query-type white-text">Diet</span>
+        </label>
+    </form>
+
+  </div>
