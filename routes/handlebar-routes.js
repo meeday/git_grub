@@ -13,4 +13,8 @@ router.get('/dashboard', authCheck, (req, res) => {
   res.render('dashboard');
 });
 
+router.get('*', guestCheck, (req, res) => {
+  res.render('guest');
+});
+
 module.exports = router;
