@@ -1,12 +1,12 @@
 module.exports = {
   authCheck: (req, res, next) => {
-    if (req.isAuthenticated) {
+    if (req.user) {
       return next();
     }
     res.redirect('/guest');
   },
   guestCheck: (req, res, next) => {
-    if (!req.isAuthenticated) {
+    if (!req.user) {
       return next();
     }
     res.redirect('/member');
