@@ -17,7 +17,7 @@ const api = {
     let list = '';
     for (let i = 0; i < ingredients.length; i += 1) {
       list += `, +${ingredients[i]}`;
-      searchQuery = `${firstIng}${list}`; 
+      searchQuery = `${firstIng}${list}`;
     }
     const results = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${searchQuery}&cuisine=${cuisine}&diet=${diet}&excludeIngredients=${excludeIngredients}&intolerances=${intolerances}&number=40&instructionsRequired=true&apiKey=${apiKey}`);
     return results.data;
