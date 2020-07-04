@@ -10,4 +10,7 @@ module.exports = {
   cookie: {
     key: process.env.SECRET_KEY,
   },
+  api: {
+    key: process.env.API_KEY,
+  },
 };
