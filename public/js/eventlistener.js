@@ -1,22 +1,19 @@
 // Search Selection
-const cuisineBtn = $("#cuisine-btn");
-const intoleranceBtn = $("#intolerance-btn");
-const dietBtn = $("#diet-btn");
-const cuisineDropdown = $("#cuisine-dropdown");
-const intoleranceDropdown = $("#intolerance-dropdown");
+const cuisineBtn = $('#cuisine-btn');
+const dietBtn = $('#diet-btn');
+const cuisineDropdown = $('#cuisine-dropdown');
+const intoleranceDropdown = $('#intolerance-dropdown');
+const dietDropdown = $('#diet-dropdown');
 
 // Search Filter Function
-cuisineBtn.on("click", () => {
-    intoleranceDropdown.hide();
-    cuisineDropdown.show();
+cuisineBtn.on('click', () => {
+  dietDropdown.hide();
+  intoleranceDropdown.show();
+  cuisineDropdown.show();
 });
 
-intoleranceBtn.on("click", () => {
-    cuisineDropdown.hide();
-    intoleranceDropdown.show();
+dietBtn.on('click', () => {
+  cuisineDropdown.hide();
+  intoleranceDropdown.show();
+  dietDropdown.show();
 });
-
-dietBtn.on("click", () => {
-    cuisineDropdown.hide();
-    intoleranceDropdown.hide();
-})
