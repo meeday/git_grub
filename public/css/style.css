@@ -19,3 +19,17 @@ body{
 .findbtn {
   background-color: transparent;
 }
+
+.modalbtn {
+  background-color: rgb(138, 138, 138);
+  border-radius: 12px;
+}
+
+#query-selection {
+  display: flex;
+  justify-content: center;
+}
+
+#query-selection > label {
+  padding-right: 5%;
+}
