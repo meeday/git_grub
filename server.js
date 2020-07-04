@@ -5,6 +5,7 @@ const cookieSession = require('cookie-session');
 const path = require('path');
 
 const authRoutes = require('./routes/auth-routes');
+const handlebarRoutes = require('./routes/handlebar-routes');
 const config = require('./config/config');
 const db = require('./config/db');
 
@@ -26,9 +27,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Auth routes
+// Routes
 
 app.use('/auth', authRoutes);
+app.use('/', handlebarRoutes);
 
 // Cookie Session
 app.use(cookieSession({
