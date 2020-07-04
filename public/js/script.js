@@ -10,3 +10,5 @@ document.addEventListener('DOMContentLoaded', () => {
 $(document).ready(() => {
   $('.sidenav').sidenav();
 });
+
+$()
