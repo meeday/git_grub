@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const passport = require('passport');
-const { authCheck } = require('../middleware/auth');
 
 // Auth with Google
 
@@ -10,7 +9,7 @@ router.get('/google', passport.authenticate('google', {
 
 // Callback route for Google login
 
-router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
+router.get('/google/redirect', passport.authenticate('google', { failureRedirect: '/' }), (req, res) => {
   res.redirect('/member');
 });
 

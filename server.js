@@ -16,6 +16,12 @@ require('./config/passport');
 
 const app = express();
 
+// Cookie Session
+app.use(cookieSession({
+  maxAge: 24 * 60 * 60 * 1000,
+  keys: [config.cookie.key],
+}));
+
 // Set static files
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -27,20 +33,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Set template engine
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
+
 // Routes
 
 app.use('/auth', authRoutes);
 app.use('/', handlebarRoutes);
-
-// Cookie Session
-app.use(cookieSession({
-  maxAge: 24 * 60 * 60 * 1000,
-  keys: [config.cookie.key],
-}));
-
-// Set template engine
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
 
 // Initialize app
 
