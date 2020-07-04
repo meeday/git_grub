@@ -3,11 +3,16 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db').sequelize();
 
 const User = sequelize.define('User', {
+  id: {
+    type: DataTypes.UUIDV4,
+    // defaultType: DataTypes.UUIDV4,
+    allowNull: false,
+    primaryKey: true,
+  },
   googleId: {
     type: DataTypes.STRING,
     unique: true,
     allowNull: false,
-    primaryKey: true,
   },
   displayName: {
     type: DataTypes.STRING,
@@ -21,14 +26,6 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: true,
-    unique: true,
-    validate: {
-      isEmail: true,
-    },
-  },
   avatar: {
     type: DataTypes.STRING,
     allowNull: true,
@@ -37,5 +34,7 @@ const User = sequelize.define('User', {
     },
   },
 });
+
+User.sync();
 
 module.exports = User;
