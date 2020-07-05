@@ -9,7 +9,7 @@
 
 
 body{
-  background-image: url(https://images.unsplash.com/photo-1589714299622-6c46cf8b71fd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60);
+  background-image: url(https://images.unsplash.com/photo-1484412509196-57eda96981e8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -32,4 +32,44 @@ body{
 
 #query-selection > label {
   padding-right: 5%;
+}
+
+.results {
+  text-align: center;
+}
+
+.collapsible-header {
+  color: #fff;
+}
+
+.food-img {
+  width: 150px;
+  height: auto;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+.details {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  justify-content: space-evenly;
+}
+
+@media only screen and (min-width: 768px) {
+  .results {
+    max-width: 65%;
+    margin: 25px auto;
+  }
+  
+  .food-img {
+    width: 150px;
+    height: auto;
+  }
+
+  h4 {
+    font-size: 2.28rem;
+  }
 }
