@@ -18,8 +18,15 @@
                     {{!-- {{/if}} --}}
                 </div>
             </div>
-            <div class="col s12 m1">
+            <div class="col s12 m1 save-box">
+                {{!-- {{#if inDb}} --}}
+                <i class="fas fa-heart saved"></i>
+                <p>Saved to My Recipes</p>
+                {{!-- {{/if}} --}}
+                {{!-- {{#unless inDb}}
                 <i class="far fa-heart"></i>
+                Click to save to My Recipes
+                {{/#unless}} --}}
             </div>
         </div>
         <div class="collapsible-body grey blue-grey lighten-5">
@@ -49,7 +56,11 @@
                 </div>
             </div>
             <div class="col s12 m1">
+                {{#if inDb}}
+                <i class="fas fa-heart saved"></i>
+                {{/if}}
                 <i class="far fa-heart"></i>
+                <p>Click to save</p>
             </div>
         </div>
         <div class="collapsible-body grey blue-grey lighten-5">
@@ -81,6 +92,7 @@
             </div>
             <div class="col s12 m1">
                 <i class="far fa-heart"></i>
+                <p>Click to save</p>
             </div>
         </div>
         <div class="collapsible-body grey blue-grey lighten-5">
