@@ -3,6 +3,8 @@ const express = require('express');
 const db = require("../models/Recipe");
 const api = require('../utils/axios');
 
+const app = express();
+
   // Find all Recipies and return them to the user with res.json
   app.get("/", function(req, res) {
     db.Recipe.findAll({}).then(function(dbRecipe) {
