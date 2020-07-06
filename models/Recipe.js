@@ -43,10 +43,16 @@ const Recipe = sequelize.define('Recipe', {
       isUrl: true,
     },
   },
+  time: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
   comments: {
     type: DataTypes.STRING,
     allowNull: true,
   },
 });
+
+Recipe.sync();
 
 module.exports = Recipe;
