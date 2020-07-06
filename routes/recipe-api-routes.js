@@ -23,13 +23,13 @@ app.get('/api/recipe/:id', (req, res) => {
   });
 });
 
-app.post('/api/recipe', (req, res) => {
-  // Save Recipe info in to the DB with the data available to us in req.body
-  console.log(req.body);
-  db.Recipe.create(req.body).then((dbRecipe) => {
-    res.json(dbRecipe);
-  });
-});
+// app.post('/api/recipe', (req, res) => {
+//   // Save Recipe info in to the DB with the data available to us in req.body
+//   console.log(req.body);
+//   db.Recipe.create(req.body).then((dbRecipe) => {
+//     res.json(dbRecipe);
+//   });
+// });
 
 app.post('/api/search', async (req, res) => {
   const searchTerm = req.body.term;
@@ -40,6 +40,27 @@ app.post('/api/search', async (req, res) => {
   res.json(searchTerm);
   const data = await api.userSearch(searchTerm, cuisinePref, dietPref, allergies);
   console.log(data);
+});
+
+app.post('/api/recipe', async (req, res) => {
+  console.log(req.body);
+  
+
+  db.create({
+  id: req.body.id,
+  googleId: req.body.googleId,
+  recipeId: req.body.recipeId,
+  title: req.body.title,
+  summary: req.body.summary,
+  cuisine: req.body.cuisine,
+  vegan: req.body.vegan,
+  imageUrl: req.body.imageUrl,
+  time: req.body.time,
+  comments: req.body.comments
+  })
+  .then((dataToSave) => {
+    res.json(dataToSave);
+  });
 });
 
 app.delete('/api/recipe/:id', (req, res) => {
