@@ -8,6 +8,7 @@ const authRoutes = require('./routes/auth-routes');
 const handlebarRoutes = require('./routes/handlebar-routes');
 const config = require('./config/config');
 const db = require('./config/db');
+const recipeRoutes = require('./routes/recipe-api-routes');
 
 // Passport config
 require('./config/passport');
@@ -41,6 +42,7 @@ app.set('view engine', 'handlebars');
 
 app.use('/auth', authRoutes);
 app.use('/', handlebarRoutes);
+app.use('/', recipeRoutes);
 
 // Initialize app
 
