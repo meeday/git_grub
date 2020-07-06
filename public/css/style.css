@@ -58,9 +58,17 @@ h4 {
   justify-content: space-evenly;
 }
 
+.saved {
+  color: pink;
+}
+
+.fa-heart {
+  margin: 0 !important;
+}
+
 @media only screen and (min-width: 768px) {
   .results {
-    max-width: 65%;
+    max-width: 80%;
     margin: 25px auto;
   }
   
