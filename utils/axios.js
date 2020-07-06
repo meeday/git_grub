@@ -22,6 +22,10 @@ const api = {
     const results = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${searchQuery}&cuisine=${cuisine}&diet=${diet}&intolerances=${intolerances}&number=15&instructionsRequired=true&apiKey=${apiKey}`);
     return results.data;
   },
+  async recipeInBulk(str) {
+    const results = await axios.get(`https://api.spoonacular.com/recipes/informationBulk?ids=${str}&number=15&apiKey=${apiKey}`);
+    return results.data;
+  },
 };
 
 module.exports = api;
