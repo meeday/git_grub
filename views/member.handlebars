@@ -1,15 +1,15 @@
 {{!-- search --}}
 <!-- TOP ROW BUTTON -->
-  <div class="row">
-    <!-- Side Nav Button -->
-    <a href="#" data-target="slide-out" class="sidenav-trigger waves-effect waves-light findbtn btn-large white-text">
-      <i class="material-icons left">menu</i>Menu
-    </a>
-    <!-- Logout Button -->
-    <a class="waves-effect waves-light btn modal-trigger findbtn btn-large right" href="#!">
-      <i class="material-icons left">login</i>LOGOUT
-    </a>
-  </div>
+<div class="row">
+  <!-- Side Nav Button -->
+  <a href="#" data-target="slide-out" class="sidenav-trigger waves-effect waves-light findbtn btn-large white-text">
+    <i class="material-icons left">menu</i>Menu
+  </a>
+  <!-- Logout Button -->
+  <a class="waves-effect waves-light btn modal-trigger findbtn btn-large right" href="/auth/logout">
+    <i class="material-icons left">login</i>LOGOUT
+  </a>
+</div>
 
 <!-- SECONDARY FUNCTION STRUCTURE START HERE -->
 
@@ -42,7 +42,14 @@
       <div class="row center">
       </div>
       <br>
-  <!-- Cuisine Form -->
+
+      <div id="default-search-input" class="input-field col s12">
+        <a href="#!" id="search-icon" class="material-icons white-text prefix">search</a>
+        <input type="text" id="search-query" class="autocomplete white-text" />
+        <label class="white-text" for="search-query">Search</label>
+      </div>
+      <br>
+      <!-- Cuisine Form -->
 
       <div style="display: none;" id="cuisine-dropdown" class="input-field col s12">
         <select class="cuisine" multiple>
@@ -81,8 +88,8 @@
         </select>
         <label class="white-text">Diet</label>
       </div>
-      
-    <!-- Intolerance Form -->
+
+      <!-- Intolerance Form -->
       <div style="display: none;" id="intolerance-dropdown" class="input-field col s12">
         <select class="intolerance" multiple>
           <option value="1">Dairy</option>
@@ -101,24 +108,24 @@
         <label class="white-text">Intolerance</label>
       </div>
 
-  
 
-    <!-- Select Button -->
+
+      <!-- Select Button -->
       <form action="#" id="query-selection">
-          <label>
-            <input id="cuisine-btn" name="group1" type="radio" class="with-gap"/>
-            <span class="query-type default-query white-text">Cuisine</span>
-          </label>
+        <label>
+          <input id="cuisine-btn" name="group1" type="radio" class="with-gap" />
+          <span class="query-type default-query white-text">Cuisine</span>
+        </label>
 
-          <label>
-            <input id="diet-btn" name="group1" type="radio" class="with-gap"/>
-            <span class="query-type white-text">Diet</span>
-          </label>
+        <label>
+          <input id="diet-btn" name="group1" type="radio" class="with-gap" />
+          <span class="query-type white-text">Diet</span>
+        </label>
       </form>
 
-    <label>
-      <input id="diet-btn" name="group1" type="radio" class="with-gap" />
-      <span class="query-type white-text">Diet</span>
-    </label>
-  </form>
-</div>
+      <label>
+        <input id="diet-btn" name="group1" type="radio" class="with-gap" />
+        <span class="query-type white-text">Diet</span>
+      </label>
+      </form>
+    </div>
