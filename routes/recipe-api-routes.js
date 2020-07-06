@@ -28,6 +28,17 @@ const db = require("../models/Recipe");
     });
   });
 
+  app.post('/api/search', async (req, res) => {
+    const searchTerm = req.body.term;
+    const cuisinePref = req.body.cuisine;
+    const dietPref = req.body.diet;
+    const allergies = req.body.allergy;
+    console.log(searchTerm);
+    res.json(searchTerm);
+    const data = await api.userSearch(searchTerm, cuisinePref, dietPref, allergies);
+    console.log(data);
+  }); 
+
   app.delete("/api/recipe/:id", function(req, res) {
     // Delete the Recipe with the id available to us in req.params.id
     db.Recipe.destroy({
@@ -39,4 +50,4 @@ const db = require("../models/Recipe");
     });
   });
 
-};
+
