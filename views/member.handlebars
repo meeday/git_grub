@@ -13,39 +13,33 @@
 
 <!-- SECONDARY FUNCTION STRUCTURE START HERE -->
 
-    <!-- Side Nav Structure -->
-  <ul id="slide-out" class="sidenav">
-      <li><div class="user-view">
-        <div class="background">
-          <img src="https://image.freepik.com/free-psd/arrangement-fast-food-wooden-background_23-2148321316.jpg">
-        </div>
-        <!-- User Detail after login -->
-        <!-- CAUTION!!! PLACE HOLDER CONTAINED!!!! -->
-        <a href="#user"><img class="circle" id="user-icon" src="{{avatar}}"></a>
-        <a href="#name"><span class="white-text name" id="user-name">{{name}}</span></a>        
-      </div></li>
-      <li><a class="subheader">GET RECIPE~</a></li>
-      <li><a href="#!"><i class="material-icons">search</i>Search Recipe</a></li>
-      <li><a href="/dashboard"><i class="material-icons">menu_book</i>Recipe Dashboard</a></li>
-  </ul>
+<!-- Side Nav Structure -->
+<ul id="slide-out" class="sidenav">
+  <li>
+    <div class="user-view">
+      <div class="background">
+        <img src="https://image.freepik.com/free-psd/arrangement-fast-food-wooden-background_23-2148321316.jpg">
+      </div>
+      <!-- User Detail after login -->
+      <!-- CAUTION!!! PLACE HOLDER CONTAINED!!!! -->
+      <a href="#user"><img class="circle" id="user-icon" src="{{avatar}}"></a>
+      <a href="#name"><span class="white-text name" id="user-name" data-id="{{id}}">{{displayName}}</span></a>
+    </div>
+  </li>
+  <li><a class="subheader">GET RECIPE~</a></li>
+  <li><a href="#!"><i class="material-icons">search</i>Search Recipe</a></li>
+  <li><a href="/dashboard"><i class="material-icons">menu_book</i>My Recipes</a></li>
+</ul>
 
 <!-- SECONDARY FUNCTION STRUCTURE END HERE -->
 
-  
-  <!-- Search Template -->
-  <div class="container landing-page">
-      <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
-          <h1 class="center white-text">Get Grub</h1>
-          <div class="row center">
-          </div>
-        </div>
-      </div>
 
-      <div id="default-search-input" class="input-field col s12">
-        <a href="#!" id="search-icon" class="material-icons white-text prefix">search</a>
-        <input type="text" id="search-query" class="autocomplete white-text" />
-        <label class="white-text" for="search-query">Search</label>
+<!-- Search Template -->
+<div class="container landing-page">
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <h1 class="center white-text">Get Grub</h1>
+      <div class="row center">
       </div>
       <br>
   <!-- Cuisine Form -->
@@ -122,4 +116,9 @@
           </label>
       </form>
 
-  </div>
+    <label>
+      <input id="diet-btn" name="group1" type="radio" class="with-gap" />
+      <span class="query-type white-text">Diet</span>
+    </label>
+  </form>
+</div>

@@ -9,8 +9,11 @@ router.get('/guest', guestCheck, (req, res) => {
 
 router.get('/member', authCheck, (req, res) => {
   res.render('member', {
-    name: req.user.displayName,
+    displayName: req.user.displayName,
+    firstName: req.user.firstName,
+    surname: req.user.surname,
     avatar: req.user.avatar,
+    id: req.user.googleId,
   });
 });
 
@@ -18,8 +21,9 @@ router.get('/dashboard', authCheck, (req, res) => {
   res.render('dashboard', {
     displayName: req.user.displayName,
     firstName: req.user.firstName,
-    suername: req.user.surname,
+    surname: req.user.surname,
     avatar: req.user.avatar,
+    id: req.user.googleId,
   });
 });
 
