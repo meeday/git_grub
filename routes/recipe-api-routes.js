@@ -37,9 +37,22 @@ app.post('/api/search', async (req, res) => {
   const dietPref = req.body.diet;
   const allergies = req.body.allergy;
   console.log(searchTerm);
-  res.json(searchTerm);
   const data = await api.userSearch(searchTerm, cuisinePref, dietPref, allergies);
-  console.log(data);
+  const recipeId = (data.results.map((recipe) => recipe.id)).toString();
+  console.log(recipeId);
+  const recipeSearch = await api.recipeInBulk(recipeId);
+  const instructions = recipeSearch.map((recipe) => ({
+    id: recipe.id,
+    title: recipe.title,
+    summary: recipe.instructions,
+    cuisine: recipe.cuisines,
+    vegan: recipe.vegan,
+    vegetarian: recipe.vegetarian,
+    imageUrl: recipe.image,
+    time: recipe.readyInMinutes,
+  }));
+  console.log(instructions);
+  res.json(instructions);
 });
 
 app.delete('/api/recipe/:id', (req, res) => {
