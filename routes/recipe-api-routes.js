@@ -2,7 +2,6 @@ const express = require('express');
 
 const db = require("../models/Recipe");
 
-module.exports = function(app) {
   // Find all Recipies and return them to the user with res.json
   app.get("/", function(req, res) {
     db.Recipe.findAll({}).then(function(dbRecipe) {
