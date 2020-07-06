@@ -50,4 +50,4 @@ const db = require("../models/Recipe");
     });
   });
 
-
+module.exports = app;
