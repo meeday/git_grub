@@ -1,6 +1,7 @@
 const express = require('express');
 
 const db = require("../models/Recipe");
+const api = require('../utils/axios');
 
   // Find all Recipies and return them to the user with res.json
   app.get("/", function(req, res) {
