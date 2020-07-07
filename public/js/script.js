@@ -60,6 +60,7 @@ searchBtn.on('click', () => {
 
 $(document).ready(() => {
   const saveToDb = $('.far');
+  const addComments = $('.comment');
 
 
   //click event for save button
@@ -82,12 +83,8 @@ $(document).ready(() => {
       type: 'POST',
       url: '/api/recipe',
       data: dataTodo,
-      timeout: 5000,
       success: function (data) {
         alert(data.title + 'Recipe successfully saved !')
-      },
-      error: function () {
-        alert('Error Occored !');
       },
       complete: false
     });
@@ -95,22 +92,22 @@ $(document).ready(() => {
     console.log(dataTodo);
     console.log(event.target);
   });
+
+  //create or update comments
+  addComments.on('click', (event) => {
+   const id = $(this).data("id");
+   const newComment = $(this).find('.summary').html();
+
+
+    $.ajax({
+      method: "PUT",
+      url: "/api/dashboard" + id,
+      data: newComment
+    })
+      .then(function () {
+        window.location.href = "/api/dashboard";
+      });
+
+  });
+
 });
-  //this function save Recipe to the DB
-//   function saveRecipe(event, dataTodo) {
-//    // event.preventDefault();
-//     $.ajax({
-//       type: 'POST',
-//       url: '/api/recipe',
-//       data: dataTodo,
-//       timeout: 5000,
-//       success: function (data) {
-//         alert(data.title + 'Recipe successfully saved !')
-//       },
-//       error: function () {
-//         alert('Error Occored !');
-//       },
-//       complete: false
-//     });
-//   }
-// });

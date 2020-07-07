@@ -1,4 +1,4 @@
-<!-- Search Template -->
+{{!-- <!-- Search Template -->
     <div class="container landing-page">
         <div class="section no-pad-bot" id="index-banner">
           <div class="container">
@@ -9,4 +9,44 @@
             </div>
           </div>
         </div> 
+    </div> --}}
+
+<ul>
+  {{#each recipe}}
+  <li>
+    <div class="collapsible-header blue-grey lighten-1 row valign-wrapper" data-id={{this.id}}>
+      <div class="col s12 m2"><img class="food-img" src="https://spoonacular.com/recipeImages/532245-556x370.jpg"
+          alt=""></div>
+      <div class="col s12 m9">
+        <h4 class="title">{{this.title}}</h4>
+        <div class="details">
+          {{#if cuisine}}
+          <h6><i class="fas fa-utensils"></i><span class="cuisine">{{this.cuisine}}</span></h6>
+          {{/if}}
+          {{!-- {{#if vegetarian}} --}}
+          <h6 class="vegetarian"><i class="fas fa-carrot"></i>{{this.vegan}}</h6>
+          {{!-- {{/if}} --}}
+          {{!-- {{#if time}} --}}
+          <h6><i class="fas fa-clock time">{{this.time}}</i></h6>
+          {{!-- {{/if}} --}}
+        </div>
+      </div>
+      <div class="col s12 m1 save-box">
+        {{!-- {{#if inDb}} --}}
+        <i class="fas fa-heart saved"></i>
+        <p>Saved</p>
+        {{!-- {{/if}} --}}
+        {{!-- {{#unless inDb}}
+                <i class="far fa-heart unsaved"></i>
+                Click to save to My Recipes
+                {{/#unless}} --}}
+        <i class="fas fa-comment-plus comment"></i>
+        <p>Comments</p>
+      </div>
     </div>
+    <div class="collapsible-body grey blue-grey lighten-5">
+      <span class="summary">{{this.comments}}</span>
+    </div>
+  </li>
+  {{/each}}
+</ul>

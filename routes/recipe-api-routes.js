@@ -8,28 +8,25 @@ const app = express();
 // Find all Recipies and return them to the user with res.json
 app.get('/', (req, res) => {
   db.Recipe.findAll({}).then((dbRecipe) => {
-    res.json(dbRecipe);
+    console.log(dbRecipe);
+
+    res.render("dashboard", { recipe: dbRecipe });
   });
 });
 
-app.get('/api/recipe/:id', (req, res) => {
-  // Find one Recipe with the id in req.params.id and return them to the user with res.json
-  db.Recipe.findOne({
-    where: {
-      id: req.params.id,
-    },
-  }).then((dbRecipe) => {
-    res.json(dbRecipe);
-  });
-});
 
-// app.post('/api/recipe', (req, res) => {
-//   // Save Recipe info in to the DB with the data available to us in req.body
-//   console.log(req.body);
-//   db.Recipe.create(req.body).then((dbRecipe) => {
-//     res.json(dbRecipe);
-//   });
-// });
+// PUT route for create or updating comments
+app.put("/api/dashboard/:id", function (req, res) {
+  db.Recipe.update(
+    req.body,
+    {
+      where: {
+        id: req.body.id
+      }
+    }).then(function (dbRecipe) {
+      res.render('dashboard', { recipe: dbRecipe })
+    });
+});
 
 app.post('/api/search', async (req, res) => {
   const searchTerm = req.body.term;
@@ -55,25 +52,25 @@ app.post('/api/search', async (req, res) => {
   res.json(instructions);
 });
 
-app.post('/api/recipe', async (req, res) => {
-  console.log(req.body);
-  
+app.post('/api/member', async (req, res) => {
+  // console.log(req.body);
+
 
   db.Recipe.create({
-  id: req.body.id,
-  googleId: req.body.googleId,
-  recipeId: req.body.recipeId,
-  title: req.body.title,
-  summary: req.body.summary,
-  cuisine: req.body.cuisine,
-  vegan: req.body.vegan,
-  imageUrl: req.body.imageUrl,
-  time: req.body.time,
-  comments: req.body.comments
+    id: req.body.id,
+    googleId: req.body.googleId,
+    recipeId: req.body.recipeId,
+    title: req.body.title,
+    summary: req.body.summary,
+    cuisine: req.body.cuisine,
+    vegan: req.body.vegan,
+    imageUrl: req.body.imageUrl,
+    time: req.body.time,
+    comments: req.body.comments
   })
-  .then((dataToSave) => {
-    res.json(dataToSave);
-  });
+    .then((dbRecipe) => {
+      res.render("dashboard", { recipe: dbRecipe });
+    });
 });
 
 app.delete('/api/recipe/:id', (req, res) => {
