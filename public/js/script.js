@@ -1,3 +1,13 @@
+$(document).ajaxStart(() => {
+  $('.loading').removeClass('display-none');
+});
+
+// Hide loading spinner and show search button when ajax call completes
+
+$(document).ajaxStop(() => {
+  $('.loading').addClass('display-none');
+});
+
 const searchBtn = $('#search-icon');
 const searchQuery = $('#search-query');
 
@@ -6,7 +16,7 @@ searchBtn.on('click', async () => {
   let cuisinePref = ($('.cuisine option:selected').toArray().map((item) => item.text)).toString();
   let dietPref = ($('.diet option:selected').toArray().map((item) => item.text)).toString();
   let allergies = ($('.intolerance option:selected').toArray().map((item) => item.text)).toString();
-  let preferences = {
+  const preferences = {
     term: searchTerm,
     cuisine: cuisinePref,
     diet: dietPref,
@@ -37,6 +47,7 @@ searchBtn.on('click', async () => {
       method: 'GET',
       data: preferences,
     });
+    console.log(result);
   } catch (err) {
     console.error('ERROR - script.js - searchBtn: ', err);
   }
@@ -46,9 +57,9 @@ $(document).ready(() => {
   const saveToDb = $('.far');
   const addComments = $('.comment');
 
-  //click event for save button
+  // click event for save button
   saveToDb.on('click', (event) => {
-    //get data from ajax call
+    // get data from ajax call
     const dataTodo = {
       googleId: $('#user-name').data('id'),
       recipeId: $(event.target).parent().parent().data('id'),
