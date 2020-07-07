@@ -71,7 +71,7 @@ $(document).ready(() => {
       recipeId: $(event.target).parent().parent().data('id'),
       title: $(event.target).parent().parent().find('.title').html(),
       summary: $(event.target).parent().parent().parent().find('.summary').html(),
-      cuisine: $(event.target).parent().parent().find('.cuisine').html(),
+      cuisine: $(event.target).parent().parent().parent().find('.cuisine').html(),
       vegan: false,
       imageUrl: $(event.target).parent().parent().find('.food-img').attr('src'),
       time: $(event.target).parent().parent().parent().parent().find('.time').html(),
