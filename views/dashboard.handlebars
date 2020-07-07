@@ -1,12 +1,61 @@
 <!-- Search Template -->
-    <div class="container landing-page">
-        <div class="section no-pad-bot" id="index-banner">
-          <div class="container">
-            <h1 class="center white-text" data-id="{{googleId}}">My Recipes</h1>
-            <div class="row center">
-                <ul>
-                </ul>
-            </div>
-          </div>
-        </div> 
+<div class="container landing-page">
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <h1 class="center white-text" data-id="{{googleId}}">My Recipes</h1>
+      <div class="row center">
+        <ul>
+        </ul>
+      </div>
     </div>
+  </div>
+</div>
+
+<ul class="collapsible results">
+  {{#each recipes}}
+  <li>
+    <div class="collapsible-header blue-grey lighten-1 row valign-wrapper" data-id="{{id}}">
+      <div class="col s12 m2"><img class="food-img" src="{{imageUrl}}" alt=""></div>
+      <div class="col s12 m9">
+        <h4 class="title">{{title}}</h4>
+        <div class="details">
+          {{#if cuisine}}
+          <h6><i class="fas fa-utensils"></i><span class="cuisine">{{cuisine}}</span></h6>
+          {{/if}}
+          {{#if vegetarian}}
+          <h6 class="vegetarian"><i class="fas fa-carrot"></i>Vegetarian</h6>
+          {{/if}}
+          {{#if time}}
+          <h6 class="time"><i class="fas fa-clock"></i></i>{{time}} minutes</h6>
+          {{/if}}
+        </div>
+      </div>
+      <div class="col s12 m1 save-box">
+        <i class="fas fa-trash-alt"></i>
+        Click to delete recipe
+
+      </div>
+    </div>
+    <div class="collapsible-body grey blue-grey lighten-5">
+      <div class="row summary-row">
+        <span class="summary">{{summary}}</span>
+      </div>
+      <div class="row comments-row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea class="materialize-textarea comments" placeholder="Add any comments here..."></textarea>
+          <label for="textarea1">Textarea</label>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="row comments-row">
+          <h4>Comments</h4>
+        <textarea name="comments" class="comment" placeholder="Add any comments here..."></textarea>
+        <button class="btn waves-effect waves-light comment-save">Save</button>        
+      </div>
+    </div>
+  </li>
+  {{/each}}
+</ul>

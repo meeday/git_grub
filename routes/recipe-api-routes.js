@@ -1,7 +1,7 @@
 const express = require('express');
 const db = require('../models/Recipe');
 const api = require('../utils/axios');
-const { authCheck, guestCheck } = require('../middleware/auth');
+const { authCheck } = require('../middleware/auth');
 
 const app = express();
 
@@ -54,6 +54,7 @@ app.get('/api/recipe/:search/:cuisine/:diet/:allergy', authCheck, async (req, re
   }
   try {
     const data = await api.userSearch(searchTerm, cuisinePref, dietPref, allergies);
+    console.log(req.user.googleId);
     const recipeId = (data.results.map((recipe) => recipe.id)).toString();
     const recipeSearch = await api.recipeInBulk(recipeId);
     const instructions = recipeSearch.map((recipe) => ({
@@ -66,12 +67,15 @@ app.get('/api/recipe/:search/:cuisine/:diet/:allergy', authCheck, async (req, re
       imageUrl: recipe.image,
       time: recipe.readyInMinutes,
     }));
-    res.render('recipe', { 
+    res.render('recipe', {
       recipes: instructions,
       searchTerm,
       cuisinePref,
       dietPref,
       allergies,
+      googleId: req.user.googleId,
+      avatar: req.user.avatar,
+      displayName: req.user.displayName,
     });
   } catch (err) {
     console.error('ERROR - recipe-api-routes.js - get/api/recipe', err);
@@ -80,23 +84,22 @@ app.get('/api/recipe/:search/:cuisine/:diet/:allergy', authCheck, async (req, re
 
 app.post('/api/recipe', async (req, res) => {
   console.log(req.body);
-  
 
   db.Recipe.create({
-  id: req.body.id,
-  googleId: req.body.googleId,
-  recipeId: req.body.recipeId,
-  title: req.body.title,
-  summary: req.body.summary,
-  cuisine: req.body.cuisine,
-  vegan: req.body.vegan,
-  imageUrl: req.body.imageUrl,
-  time: req.body.time,
-  comments: req.body.comments
+    id: req.body.id,
+    googleId: req.body.googleId,
+    recipeId: req.body.recipeId,
+    title: req.body.title,
+    summary: req.body.summary,
+    cuisine: req.body.cuisine,
+    vegan: req.body.vegan,
+    imageUrl: req.body.imageUrl,
+    time: req.body.time,
+    comments: req.body.comments,
   })
-  .then((dataToSave) => {
-    res.json(dataToSave);
-  });
+    .then((dataToSave) => {
+      res.json(dataToSave);
+    });
 });
 
 app.delete('/api/recipe/:id', (req, res) => {
