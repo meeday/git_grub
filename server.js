@@ -41,8 +41,8 @@ app.set('view engine', 'handlebars');
 // Routes
 
 app.use('/auth', authRoutes);
-app.use('/', handlebarRoutes);
 app.use('/', recipeRoutes);
+app.use('/', handlebarRoutes);
 
 // Initialize app
 
