@@ -50,13 +50,13 @@ $(document).ready(() => {
   saveToDb.on('click', (event) => {
     //get data from ajax call
     const dataTodo = {
-      id: 'concatenation of googleId and recipeId',
-      goodleId: $('#user-name').data('id'),
+      googleId: $('#user-name').data('id'),
       recipeId: $(event.target).parent().parent().data('id'),
+      id: ($('#user-name').data('id')) + ($(event.target).parent().parent().data('id')),
       title: $(event.target).parent().parent().find('.title').html(),
       summary: $(event.target).parent().parent().parent().find('.summary').html(),
       cuisine: $(event.target).parent().parent().parent().find('.cuisine').html(),
-      vegan: false,
+      vegetarian: false,
       imageUrl: $(event.target).parent().parent().find('.food-img').attr('src'),
       time: $(event.target).parent().parent().parent().parent().find('.time').html(),
       comments: null

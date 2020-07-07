@@ -6,11 +6,15 @@ const { authCheck, guestCheck } = require('../middleware/auth');
 const app = express();
 
 // Find all Recipies and return them to the user with res.json
-app.get('/', (req, res) => {
-  db.Recipe.findAll({}).then((dbRecipe) => {
-    console.log(dbRecipe);
+app.get('/dashboard', (req, res) => {
+  console.log(req.user.googleId);
+  
+  db.findAll({ where: {
+    googleId: req.user.googleId
+  }}).then((dbRecipe) => {
+   
 
-    res.render("dashboard", { recipe: dbRecipe });
+   res.render("dashboard", { recipe: dbRecipe });
   });
 });
 
@@ -75,11 +79,11 @@ app.get('/api/recipe/:search/:cuisine/:diet/:allergy', authCheck, async (req, re
   }
 });
 
-app.post('/api/member', async (req, res) => {
+app.post('/api/recipe', async (req, res) => {
   // console.log(req.body);
 
 
-  db.Recipe.create({
+  db.create({
     id: req.body.id,
     googleId: req.body.googleId,
     recipeId: req.body.recipeId,
@@ -92,7 +96,7 @@ app.post('/api/member', async (req, res) => {
     comments: req.body.comments
   })
     .then((dbRecipe) => {
-      res.render("dashboard", { recipe: dbRecipe });
+      res.status(200);
     });
 });
 
