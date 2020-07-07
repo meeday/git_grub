@@ -53,9 +53,9 @@ searchBtn.on('click', () => {
 </li>
 </ul>
     `
-    
-    
-  });;
+
+
+  }));
 });
 
 $(document).ready(() => {
@@ -74,7 +74,7 @@ $(document).ready(() => {
       cuisine: $(event.target).parent().parent().find('.cuisine').html(),
       vegan: false,
       imageUrl: $(event.target).parent().parent().find('.food-img').attr('src'),
-      time: $(event.target).parent().parent().find('.time').html(),
+      time: $(event.target).parent().parent().parent().parent().find('.time').html(),
       comments: null
     }
 
