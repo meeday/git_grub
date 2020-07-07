@@ -1,124 +1,16 @@
-{{!-- search --}}
-      <!-- TOP ROW BUTTON -->
-    <div class="row">
-      <!-- Side Nav Button -->
-      <a href="#" data-target="slide-out" class="sidenav-trigger waves-effect waves-light findbtn btn-large white-text">
-        <i class="material-icons left">menu</i>Menu
-      </a>
-      <!-- Login Button -->
-      <a class="waves-effect waves-light btn modal-trigger findbtn btn-large right" href="/auth/google">
-        <i class="material-icons left">login</i>LOGIN
-      </a>
-    </div>
-
-  <!-- SECONDARY FUNCTION STRUCTURE START HERE -->
-      <!-- Side Nav Structure -->
-    <ul id="slide-out" class="sidenav">
-        <li><div class="user-view">
-          <div class="background">
-            <img src="https://image.freepik.com/free-psd/arrangement-fast-food-wooden-background_23-2148321316.jpg">
-          </div>
-          <!-- User Detail after login -->
-          <!-- CAUTION!!! PLACE HOLDER CONTAINED!!!! -->
-          <br>
-          <br>
-          <br>
-        </div></li>
-        <li><a class="subheader">GET RECIPE~</a></li>
-        <li><a href="/auth/login"><i class="material-icons">menu_book</i>Login to view My Recipes</a></li>
-    </ul>
-
-  <!-- SECONDARY FUNCTION STRUCTURE END HERE -->
-
-    
-    <!-- Search Template -->
-    <div class="container landing-page">
-        <div class="section no-pad-bot" id="index-banner">
-          <div class="container">
-            <h1 class="center white-text">Get Grub</h1>
-            <div class="row center">
+<div class="container login-container">
+        <div class="card">
+            <div class="card-content">
+              <h3><i class="fas fa-utensils"></i> GetGrub</h3>
+<div class="section">
+    <p class="lead">The home of all your favourite recipes</p>
+</div>
+<div class="divider"></div>
+<div class="section">
+    <a href="/auth/google" class="btn red darken-1">
+        <i class="fab fa-google left"></i> Log In With Google
+    </a>
+</div>                
             </div>
-          </div>
         </div>
-  
-        <div id="default-search-input" class="input-field col s12">
-          <a href="#!" id="search-icon" class="material-icons white-text prefix">search</a>
-          <input type="text" id="search-query" class="autocomplete white-text" />
-          <label class="white-text" for="search-query">Search</label>
-        </div>
-        <br>
-        
-    <!-- Cuisine Form -->
-      <div style="display: none;" id="cuisine-dropdown" class="input-field col s12">
-        <select multiple>
-          <option value="1">African</option>
-          <option value="2">British</option>
-          <option value="3">Caribbean</option>
-          <option value="4">Chinese</option>
-          <option value="5">Cajun</option>
-          <option value="6">French</option>
-          <option value="7">European</option>
-          <option value="8">Greek</option>
-          <option value="9">Italian</option>
-          <option value="10">Japanese</option>
-          <option value="11">Jewish</option>
-          <option value="12">Korean</option>
-          <option value="13">Mexican</option>
-          <option value="14">Mediterranean</option>
-          <option value="15">Middle Eastern</option>
-          <option value="16">Indian</option>
-          <option value="17">Thai</option>
-          <option value="18">Spanish</option>
-          <option value="19">Latin American</option>
-          <option value="20">American</option>
-        </select>
-        <label class="white-text">Cuisine</label>
-      </div>
-
-      <div style="display: none;" id="diet-dropdown" class="input-field col s12">
-        <select multiple>
-          <option value="1">Gluten Free</option>
-          <option value="2">Ketogenic</option>
-          <option value="3">Vegetarian</option>
-          <option value="4">Vegan</option>
-          <option value="5">Pescetarian</option>
-          <option value="6">Paleo</option>
-        </select>
-        <label class="white-text">Diet</label>
-      </div>
-      
-    <!-- Intolerance Form -->
-      <div style="display: none;" id="intolerance-dropdown" class="input-field col s12">
-        <select multiple>
-          <option value="1">Dairy</option>
-          <option value="2">Egg</option>
-          <option value="3">Gluten</option>
-          <option value="4">Grain</option>
-          <option value="5">Peanut</option>
-          <option value="6">Seafood</option>
-          <option value="7">Sesame</option>
-          <option value="8">Shellfish</option>
-          <option value="9">Soy</option>
-          <option value="10">Sulfite</option>
-          <option value="11">Tree Nut</option>
-          <option value="12">Wheat</option>
-        </select>
-        <label class="white-text">Intolerance</label>
-      </div>
-
-  
-
-    <!-- Select Button -->
-      <form action="#" id="query-selection">
-          <label>
-            <input id="cuisine-btn" name="group1" type="radio" class="with-gap"/>
-            <span class="query-type default-query white-text">Cuisine</span>
-          </label>
-
-          <label>
-            <input id="diet-btn" name="group1" type="radio" class="with-gap"/>
-            <span class="query-type white-text">Diet</span>
-          </label>
-      </form>
-
     </div>
