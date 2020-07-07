@@ -59,7 +59,7 @@ app.post('/api/recipe', async (req, res) => {
   console.log(req.body);
   
 
-  db.create({
+  db.Recipe.create({
   id: req.body.id,
   googleId: req.body.googleId,
   recipeId: req.body.recipeId,
