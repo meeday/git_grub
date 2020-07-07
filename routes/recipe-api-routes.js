@@ -1,7 +1,7 @@
 const express = require('express');
-
 const db = require('../models/Recipe');
 const api = require('../utils/axios');
+const { authCheck, guestCheck } = require('../middleware/auth');
 
 const app = express();
 
@@ -31,28 +31,51 @@ app.post('/api/recipe', (req, res) => {
   });
 });
 
-app.post('/api/search', async (req, res) => {
-  const searchTerm = req.body.term;
-  const cuisinePref = req.body.cuisine;
-  const dietPref = req.body.diet;
-  const allergies = req.body.allergy;
-  console.log(searchTerm);
-  const data = await api.userSearch(searchTerm, cuisinePref, dietPref, allergies);
-  const recipeId = (data.results.map((recipe) => recipe.id)).toString();
-  console.log(recipeId);
-  const recipeSearch = await api.recipeInBulk(recipeId);
-  const instructions = recipeSearch.map((recipe) => ({
-    id: recipe.id,
-    title: recipe.title,
-    summary: recipe.instructions,
-    cuisine: recipe.cuisines,
-    vegan: recipe.vegan,
-    vegetarian: recipe.vegetarian,
-    imageUrl: recipe.image,
-    time: recipe.readyInMinutes,
-  }));
-  console.log(instructions);
-  res.json(instructions);
+// Route for search results (all parameters)
+app.get('/api/recipe/:search/:cuisine/:diet/:allergy', authCheck, async (req, res) => {
+  let searchTerm = req.params.search;
+  let cuisinePref = req.params.cuisine;
+  let dietPref = req.params.diet;
+  let allergies = req.params.allergy;
+  if (searchTerm === 'blank') {
+    searchTerm = '';
+  }
+
+  if (cuisinePref === 'blank') {
+    cuisinePref = '';
+  }
+
+  if (dietPref === 'blank') {
+    dietPref = '';
+  }
+
+  if (allergies === 'blank') {
+    allergies = '';
+  }
+  try {
+    const data = await api.userSearch(searchTerm, cuisinePref, dietPref, allergies);
+    const recipeId = (data.results.map((recipe) => recipe.id)).toString();
+    const recipeSearch = await api.recipeInBulk(recipeId);
+    const instructions = recipeSearch.map((recipe) => ({
+      id: recipe.id,
+      title: recipe.title,
+      summary: recipe.instructions,
+      cuisine: recipe.cuisines,
+      vegan: recipe.vegan,
+      vegetarian: recipe.vegetarian,
+      imageUrl: recipe.image,
+      time: recipe.readyInMinutes,
+    }));
+    res.render('recipe', { 
+      recipes: instructions,
+      searchTerm,
+      cuisinePref,
+      dietPref,
+      allergies,
+    });
+  } catch (err) {
+    console.error('ERROR - recipe-api-routes.js - get/api/recipe', err);
+  }
 });
 
 app.delete('/api/recipe/:id', (req, res) => {
