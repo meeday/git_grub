@@ -7,14 +7,15 @@ const app = express();
 
 // Find all Recipies and return them to the user with res.json
 app.get('/dashboard', (req, res) => {
-  console.log(req.user.googleId);
+  console.log('get data from db' + req.user.googleId);
   
   db.findAll({ where: {
     googleId: req.user.googleId
   }}).then((dbRecipe) => {
+   console.log(dbRecipe);
    
 
-   res.render("dashboard", { recipe: dbRecipe });
+   res.render("dashboard", { dbRecipe });
   });
 });
 
@@ -94,12 +95,14 @@ app.post('/api/recipe', async (req, res) => {
     title: req.body.title,
     summary: req.body.summary,
     cuisine: req.body.cuisine,
-    vegan: req.body.vegan,
+    vegetarian: req.body.vegetarian,
     imageUrl: req.body.imageUrl,
     time: req.body.time,
     comments: req.body.comments
   })
     .then((dbRecipe) => {
+      console.log(dbRecipe);
+      
       res.status(200);
     });
 });
