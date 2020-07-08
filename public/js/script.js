@@ -55,7 +55,7 @@ searchBtn.on('click', async () => {
 
 $(document).ready(() => {
   const saveToDb = $('.far');
-  const addComments = $('.comment');
+  const addComments = $('.comment-save');
 
   // click event for save button
   saveToDb.on('click', (event) => {
@@ -83,23 +83,23 @@ $(document).ready(() => {
       complete: false
     });
 
-    console.log(dataTodo);
-    console.log(event.target);
   });
 
   //create or update comments
   addComments.on('click', (event) => {
-   const id = $(this).data("id");
-   const newComment = $(this).find('.summary').html();
-
+   const id = $(event.target).parent().parent().siblings().data('id');
+   
+   const comments = {
+     newComment : $(event.target).parent().find('.comment').val()
+   }
 
     $.ajax({
       method: "PUT",
-      url: "/api/dashboard" + id,
-      data: newComment
+      url: "/api/dashboard/" + id,
+      data: comments
     })
       .then(function () {
-        window.location.href = "/api/dashboard";
+        window.location.href = "/dashboard";
       });
 
   });
