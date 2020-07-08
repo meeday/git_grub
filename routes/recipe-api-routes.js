@@ -7,14 +7,12 @@ const app = express();
 
 // Find all Recipies and return them to the user with res.json
 app.get('/dashboard', (req, res) => {
-  console.log('get data from db' + req.user.googleId);
+    
   
   db.findAll({ where: {
     googleId: req.user.googleId
   }}).then((dbRecipe) => {
-   console.log(dbRecipe);
-   
-
+  
    res.render("dashboard", { dbRecipe });
   });
 });
@@ -22,11 +20,14 @@ app.get('/dashboard', (req, res) => {
 
 // PUT route for create or updating comments
 app.put("/api/dashboard/:id", function (req, res) {
-  db.Recipe.update(
-    req.body,
+  console.log(req.body.newComment);
+  
+  db.update(
+    
+    {comments: req.body.newComment},
     {
       where: {
-        id: req.body.id
+        id: req.params.id
       }
     }).then(function (dbRecipe) {
       res.render('dashboard', { recipe: dbRecipe })
@@ -101,8 +102,7 @@ app.post('/api/recipe', async (req, res) => {
     comments: req.body.comments
   })
     .then((dbRecipe) => {
-      console.log(dbRecipe);
-      
+           
       res.status(200);
     });
 });
