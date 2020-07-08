@@ -7,30 +7,39 @@ const app = express();
 
 // Find all Recipies and return them to the user with res.json
 app.get('/dashboard', (req, res) => {
-  console.log('get data from db' + req.user.googleId);
-  
-  db.findAll({ where: {
-    googleId: req.user.googleId
-  }}).then((dbRecipe) => {
-   console.log(dbRecipe);
-   
+  console.log(`get data from db${req.user.googleId}`);
 
-   res.render("dashboard", { dbRecipe });
+  db.findAll({
+    where: {
+      googleId: req.user.googleId,
+    },
+  }).then((dbRecipe) => {
+    console.log(req.user.avatar);
+    console.log(req.user.displayName);
+    res.render('dashboard',
+      {
+        dbRecipe,
+        displayName: req.user.displayName,
+        firstName: req.user.firstName,
+        surname: req.user.surname,
+        avatar: req.user.avatar,
+        id: req.user.googleId,
+      });
   });
 });
 
-
 // PUT route for create or updating comments
-app.put("/api/dashboard/:id", function (req, res) {
+app.put('/api/dashboard/:id', (req, res) => {
   db.Recipe.update(
     req.body,
     {
       where: {
-        id: req.body.id
-      }
-    }).then(function (dbRecipe) {
-      res.render('dashboard', { recipe: dbRecipe })
-    });
+        id: req.body.id,
+      },
+    },
+  ).then((dbRecipe) => {
+    res.render('dashboard', { recipe: dbRecipe });
+  });
 });
 
 // Route for search results (all parameters)
@@ -87,7 +96,6 @@ app.get('/api/recipe/:search/:cuisine/:diet/:allergy', authCheck, async (req, re
 app.post('/api/recipe', async (req, res) => {
   // console.log(req.body);
 
-
   db.create({
     id: req.body.id,
     googleId: req.body.googleId,
@@ -98,18 +106,18 @@ app.post('/api/recipe', async (req, res) => {
     vegetarian: req.body.vegetarian,
     imageUrl: req.body.imageUrl,
     time: req.body.time,
-    comments: req.body.comments
+    comments: req.body.comments,
   })
     .then((dbRecipe) => {
       console.log(dbRecipe);
-      
+
       res.status(200);
     });
 });
 
 app.delete('/api/recipe/:id', (req, res) => {
   // Delete the Recipe with the id available to us in req.params.id
-  db.Recipe.destroy({
+  db.destroy({
     where: {
       id: req.params.id,
     },
