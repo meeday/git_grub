@@ -6,30 +6,32 @@ const { authCheck } = require('../middleware/auth');
 const app = express();
 
 // Find all Recipies and return them to the user with res.json
-app.get('/', (req, res) => {
-  db.Recipe.findAll({}).then((dbRecipe) => {
-    res.json(dbRecipe);
+app.get('/dashboard', (req, res) => {
+  console.log('get data from db' + req.user.googleId);
+  
+  db.findAll({ where: {
+    googleId: req.user.googleId
+  }}).then((dbRecipe) => {
+   console.log(dbRecipe);
+   
+
+   res.render("dashboard", { dbRecipe });
   });
 });
 
-app.get('/api/recipe/:id', (req, res) => {
-  // Find one Recipe with the id in req.params.id and return them to the user with res.json
-  db.Recipe.findOne({
-    where: {
-      id: req.params.id,
-    },
-  }).then((dbRecipe) => {
-    res.json(dbRecipe);
-  });
-});
 
-// app.post('/api/recipe', (req, res) => {
-//   // Save Recipe info in to the DB with the data available to us in req.body
-//   console.log(req.body);
-//   db.Recipe.create(req.body).then((dbRecipe) => {
-//     res.json(dbRecipe);
-//   });
-// });
+// PUT route for create or updating comments
+app.put("/api/dashboard/:id", function (req, res) {
+  db.Recipe.update(
+    req.body,
+    {
+      where: {
+        id: req.body.id
+      }
+    }).then(function (dbRecipe) {
+      res.render('dashboard', { recipe: dbRecipe })
+    });
+});
 
 // Route for search results (all parameters)
 app.get('/api/recipe/:search/:cuisine/:diet/:allergy', authCheck, async (req, res) => {
@@ -83,22 +85,25 @@ app.get('/api/recipe/:search/:cuisine/:diet/:allergy', authCheck, async (req, re
 });
 
 app.post('/api/recipe', async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
 
-  db.Recipe.create({
+
+  db.create({
     id: req.body.id,
     googleId: req.body.googleId,
     recipeId: req.body.recipeId,
     title: req.body.title,
     summary: req.body.summary,
     cuisine: req.body.cuisine,
-    vegan: req.body.vegan,
+    vegetarian: req.body.vegetarian,
     imageUrl: req.body.imageUrl,
     time: req.body.time,
-    comments: req.body.comments,
+    comments: req.body.comments
   })
-    .then((dataToSave) => {
-      res.json(dataToSave);
+    .then((dbRecipe) => {
+      console.log(dbRecipe);
+      
+      res.status(200);
     });
 });
 

@@ -55,65 +55,53 @@ searchBtn.on('click', async () => {
 
 $(document).ready(() => {
   const saveToDb = $('.far');
+  const addComments = $('.comment');
 
   // click event for save button
   saveToDb.on('click', (event) => {
     // get data from ajax call
     const dataTodo = {
-      id: 'concatenation of googleId and recipeId',
-      goodleId: $('#user-name').data('id'),
+      googleId: $('#user-name').data('id'),
       recipeId: $(event.target).parent().parent().data('id'),
-      title: $(event.target).parent().parent().find('.title')
-        .html(),
-      summary: $(event.target).parent().parent().parent()
-        .find('.summary')
-        .html(),
-      cuisine: $(event.target).parent().parent().parent()
-        .find('.cuisine')
-        .html(),
-      vegan: false,
-      imageUrl: $(event.target).parent().parent().find('.food-img')
-        .attr('src'),
-      time: $(event.target).parent().parent().parent()
-        .parent()
-        .find('.time')
-        .html(),
-      comments: null,
-    };
+      id: ($('#user-name').data('id')) + ($(event.target).parent().parent().data('id')),
+      title: $(event.target).parent().parent().find('.title').html(),
+      summary: $(event.target).parent().parent().parent().find('.summary').html(),
+      cuisine: $(event.target).parent().parent().parent().find('.cuisine').html(),
+      vegetarian: false,
+      imageUrl: $(event.target).parent().parent().find('.food-img').attr('src'),
+      time: $(event.target).parent().parent().parent().parent().find('.time').html(),
+      comments: null
+    }
 
     $.ajax({
       type: 'POST',
       url: '/api/recipe',
       data: dataTodo,
-      timeout: 5000,
-      success(data) {
-        alert(`${data.title}Recipe successfully saved !`);
+      success: function (data) {
+        alert(data.title + 'Recipe successfully saved !')
       },
-      error() {
-        alert('Error Occored !');
-      },
-      complete: false,
+      complete: false
     });
 
     console.log(dataTodo);
     console.log(event.target);
   });
+
+  //create or update comments
+  addComments.on('click', (event) => {
+   const id = $(this).data("id");
+   const newComment = $(this).find('.summary').html();
+
+
+    $.ajax({
+      method: "PUT",
+      url: "/api/dashboard" + id,
+      data: newComment
+    })
+      .then(function () {
+        window.location.href = "/api/dashboard";
+      });
+
+  });
+
 });
-// this function save Recipe to the DB
-//   function saveRecipe(event, dataTodo) {
-//    // event.preventDefault();
-//     $.ajax({
-//       type: 'POST',
-//       url: '/api/recipe',
-//       data: dataTodo,
-//       timeout: 5000,
-//       success: function (data) {
-//         alert(data.title + 'Recipe successfully saved !')
-//       },
-//       error: function () {
-//         alert('Error Occored !');
-//       },
-//       complete: false
-//     });
-//   }
-// });
