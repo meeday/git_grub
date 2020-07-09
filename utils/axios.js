@@ -9,19 +9,6 @@ const api = {
     const results = await axios.get(`https://api.spoonacular.com/recipes/search?query=${str}&cuisine=${cuisine}&diet=${diet}&intolerances=${intolerances}&number=15&instructionsRequired=true&apiKey=${apiKey}`);
     return results.data;
   },
-  async searchByIngredients(str, intolerances, cuisine, diet) {
-    let ingredients = [];
-    ingredients = str.split(',');
-    const firstIng = ingredients.shift();
-    let searchQuery;
-    let list = '';
-    for (let i = 0; i < ingredients.length; i += 1) {
-      list += `, +${ingredients[i]}`;
-      searchQuery = `${firstIng}${list}`;
-    }
-    const results = await axios.get(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${searchQuery}&cuisine=${cuisine}&diet=${diet}&intolerances=${intolerances}&number=15&instructionsRequired=true&apiKey=${apiKey}`);
-    return results.data;
-  },
   async recipeInBulk(str) {
     const results = await axios.get(`https://api.spoonacular.com/recipes/informationBulk?ids=${str}&number=15&apiKey=${apiKey}`);
     return results.data;

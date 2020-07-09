@@ -56,11 +56,12 @@ searchBtn.on('click', async () => {
 });
 
 $(document).ready(() => {
-  const saveToDb = $('.far');
+  const saveToDb = $('.saveBtn');
   const addComments = $('.comment-save');
 
   // click event for save button
   saveToDb.on('click', (event) => {
+    $(event.target).addClass('saved');
     // get data from ajax call
     const dataTodo = {
       googleId: $('#user-name').data('id'),
