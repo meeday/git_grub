@@ -5,17 +5,13 @@ const { authCheck } = require('../middleware/auth');
 
 const app = express();
 
-// Find all Recipies and return them to the user with res.json
+// Find all Recipies and return them to the user with res.render
 app.get('/dashboard', (req, res) => {
-  console.log(`get data from db${req.user.googleId}`);
-
   db.findAll({
     where: {
       googleId: req.user.googleId,
     },
   }).then((dbRecipe) => {
-    console.log(req.user.avatar);
-    console.log(req.user.displayName);
     res.render('dashboard',
       {
         dbRecipe,
@@ -30,11 +26,11 @@ app.get('/dashboard', (req, res) => {
 
 // PUT route for create or updating comments
 app.put('/api/dashboard/:id', (req, res) => {
-  db.Recipe.update(
-    req.body,
+  db.update(
+    { comments: req.body.newComment },
     {
       where: {
-        id: req.body.id,
+        id: req.params.id,
       },
     },
   ).then((dbRecipe) => {
@@ -65,7 +61,6 @@ app.get('/api/recipe/:search/:cuisine/:diet/:allergy', authCheck, async (req, re
   }
   try {
     const data = await api.userSearch(searchTerm, cuisinePref, dietPref, allergies);
-    console.log(req.user.googleId);
     const recipeId = (data.results.map((recipe) => recipe.id)).toString();
     const recipeSearch = await api.recipeInBulk(recipeId);
     const instructions = recipeSearch.map((recipe) => ({
@@ -94,8 +89,6 @@ app.get('/api/recipe/:search/:cuisine/:diet/:allergy', authCheck, async (req, re
 });
 
 app.post('/api/recipe', async (req, res) => {
-  // console.log(req.body);
-
   db.create({
     id: req.body.id,
     googleId: req.body.googleId,
@@ -109,8 +102,6 @@ app.post('/api/recipe', async (req, res) => {
     comments: req.body.comments,
   })
     .then((dbRecipe) => {
-      console.log(dbRecipe);
-
       res.status(200);
     });
 });

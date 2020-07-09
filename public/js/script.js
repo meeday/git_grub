@@ -1,5 +1,3 @@
-
-
 $('.collapsible .unsaved').on('click', (e) => {
   e.stopPropagation();
 });
@@ -11,13 +9,13 @@ searchBtn.on('click', async () => {
   $(document).ajaxStart(() => {
     $('.loading').removeClass('display-none');
   });
-  
+
   // Hide loading spinner and show search button when ajax call completes
-  
+
   $(document).ajaxStop(() => {
     $('.loading').addClass('display-none');
   });
-  
+
   let searchTerm = searchQuery.val().trim();
   let cuisinePref = ($('.cuisine option:selected').toArray().map((item) => item.text)).toString();
   let dietPref = ($('.diet option:selected').toArray().map((item) => item.text)).toString();
@@ -59,7 +57,7 @@ searchBtn.on('click', async () => {
 
 $(document).ready(() => {
   const saveToDb = $('.far');
-  const addComments = $('.comment');
+  const addComments = $('.comment-save');
 
   // click event for save button
   saveToDb.on('click', (event) => {
@@ -99,33 +97,41 @@ $(document).ready(() => {
 
   // create or update comments
   addComments.on('click', (event) => {
-    const id = $(this).data('id');
-    const newComment = $(this).find('.summary').html();
+    const id = $(event.target).parent().parent().siblings()
+      .data('id');
+    // const comments = {
+    //   newComment: $(event.target).parent().find('.comment').val(),
+    // };
+    const textId = ($(event.target).parent().find('.cke').attr('id'));
+    const textName = textId.replace('cke_', '');
+    const comments = {
+      newComment: CKEDITOR.instances[textName].getData(),
+    };
+    console.log(textName);
+    console.log(CKEDITOR.instances[textName].getData());
 
     $.ajax({
       method: 'PUT',
-      url: `/api/dashboard${id}`,
-      data: newComment,
+      url: `/api/dashboard/${id}`,
+      data: comments,
     })
       .then(() => {
-        window.location.href = '/api/dashboard';
+        window.location.href = '/dashboard';
       });
   });
 });
 
 $('.delete').on('click', (e) => {
   const recId = $(e.target).parent().parent().data('id');
-  const title = $(e.target).parent().parent().find('.title').html();
+  const title = $(e.target).parent().parent().find('.title')
+    .html();
   $('.destroy').data('id', recId);
-  $('.modal-title').text(title);
-  e.stopPropagation();
-  $('#modal1').modal();
-  
+  $('.modal-title').text(title);  
 });
 
 $('.destroy').on('click', (e) => {
   const deletedId = $(e.target).data('id');
-  
+
   $.ajax({
     method: 'DELETE',
     url: `/api/recipe/${deletedId}`,
