@@ -8,8 +8,6 @@ $(document).ready(() => {
 });
 
 // Search Selection
-const cuisineBtn = $('#cuisine-btn');
-const dietBtn = $('#diet-btn');
 const cuisineDropdown = $('#cuisine-dropdown');
 const intoleranceDropdown = $('#intolerance-dropdown');
 const dietDropdown = $('#diet-dropdown');
