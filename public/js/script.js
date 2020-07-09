@@ -88,8 +88,8 @@ $(document).ready(() => {
       type: 'POST',
       url: '/api/recipe',
       data: dataTodo,
-      success(data) {
-        alert(`${data.title}Recipe successfully saved !`);
+      success: function (data) {                
+        alert(dataTodo.title + 'Recipe successfully saved !')
       },
       complete: false,
     });
