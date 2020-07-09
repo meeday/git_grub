@@ -24,19 +24,6 @@ app.get('/dashboard', (req, res) => {
   });
 });
 
-// function getUserID() {
-//   // Find all Recipies and return them to the user with res.json
-//   app.get('/recipe', (req, res) => {
-//     db.count({ where: { id: id } })
-//       .then((count) => {
-//         if (count !== 0) {
-//           return false;
-//         }
-//         return true;
-//       });
-//   });
-// }
-
 // PUT route for create or updating comments
 app.put('/api/dashboard/:id', (req, res) => {
   db.update(
