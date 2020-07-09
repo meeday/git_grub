@@ -67,7 +67,6 @@ app.get('/api/recipe/:search/:cuisine/:diet/:allergy', authCheck, async (req, re
       attributes: ['recipeId'],
     });
     const idArray = recipeList.map((recipe) => recipe.dataValues.recipeId);
-    console.log(idArray);
     const data = await api.userSearch(searchTerm, cuisinePref, dietPref, allergies);
     const recipeId = (data.results.map((recipe) => recipe.id)).toString();
     const recipeSearch = await api.recipeInBulk(recipeId);
