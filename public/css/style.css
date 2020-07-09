@@ -6,10 +6,8 @@
   padding-right: 5px !important;
 }
 
-
-
 body{
-  background-image: url(https://images.unsplash.com/photo-1484412509196-57eda96981e8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+  background-image: url('../images/burger-background.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -34,6 +32,11 @@ body{
   padding-right: 5%;
 }
 
+#user-name {
+  color: black !important;
+  font-size: 20px;
+}
+
 .results {
   text-align: center;
 }
@@ -45,6 +48,7 @@ body{
 .food-img {
   width: 150px;
   height: auto;
+  border: 2px #fff solid;
 }
 
 h4 {
@@ -110,6 +114,13 @@ p {
 
 .comment-save {
   margin-top: 20px;
+}
+
+.no-recipes {
+  text-align: center;
+  color: #fff;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-top: 100px;
 }
 
 @media only screen and (min-width: 768px) {

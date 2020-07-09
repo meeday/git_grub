@@ -1,17 +1,21 @@
-$(document).ajaxStart(() => {
-  $('.loading').removeClass('display-none');
-});
-
-// Hide loading spinner and show search button when ajax call completes
-
-$(document).ajaxStop(() => {
-  $('.loading').addClass('display-none');
+$('.collapsible .unsaved').on('click', (e) => {
+  e.stopPropagation();
 });
 
 const searchBtn = $('#search-icon');
 const searchQuery = $('#search-query');
 
 searchBtn.on('click', async () => {
+  $(document).ajaxStart(() => {
+    $('.loading').removeClass('display-none');
+  });
+
+  // Hide loading spinner and show search button when ajax call completes
+
+  $(document).ajaxStop(() => {
+    $('.loading').addClass('display-none');
+  });
+
   let searchTerm = searchQuery.val().trim();
   let cuisinePref = ($('.cuisine option:selected').toArray().map((item) => item.text)).toString();
   let dietPref = ($('.diet option:selected').toArray().map((item) => item.text)).toString();
@@ -38,7 +42,6 @@ searchBtn.on('click', async () => {
   if (allergies === '') {
     allergies = 'blank';
   }
-  console.log(allergies);
 
   window.location.replace(`${origin}/api/recipe/${searchTerm}/${cuisinePref}/${dietPref}/${allergies}`);
   try {
@@ -47,7 +50,6 @@ searchBtn.on('click', async () => {
       method: 'GET',
       data: preferences,
     });
-    console.log(result);
   } catch (err) {
     console.error('ERROR - script.js - searchBtn: ', err);
   }
@@ -64,44 +66,76 @@ $(document).ready(() => {
       googleId: $('#user-name').data('id'),
       recipeId: $(event.target).parent().parent().data('id'),
       id: ($('#user-name').data('id')) + ($(event.target).parent().parent().data('id')),
-      title: $(event.target).parent().parent().find('.title').html(),
-      summary: $(event.target).parent().parent().parent().find('.summary').html(),
-      cuisine: $(event.target).parent().parent().parent().find('.cuisine').html(),
+      title: $(event.target).parent().parent().find('.title')
+        .html(),
+      summary: $(event.target).parent().parent().parent()
+        .find('.summary')
+        .html(),
+      cuisine: $(event.target).parent().parent().parent()
+        .find('.cuisine')
+        .html(),
       vegetarian: false,
-      imageUrl: $(event.target).parent().parent().find('.food-img').attr('src'),
-      time: $(event.target).parent().parent().parent().parent().find('.time').html(),
-      comments: null
-    }
+      imageUrl: $(event.target).parent().parent().find('.food-img')
+        .attr('src'),
+      time: $(event.target).parent().parent().parent()
+        .parent()
+        .find('.time')
+        .html(),
+      comments: null,
+    };
 
     $.ajax({
       type: 'POST',
       url: '/api/recipe',
       data: dataTodo,
-      success: function (data) {
-        alert(data.title + 'Recipe successfully saved !')
+      success(data) {
+        alert(`${data.title}Recipe successfully saved !`);
       },
-      complete: false
+      complete: false,
     });
-
   });
 
-  //create or update comments
+  // create or update comments
   addComments.on('click', (event) => {
-   const id = $(event.target).parent().parent().siblings().data('id');
-   
-   const comments = {
-     newComment : $(event.target).parent().find('.comment').val()
-   }
+    const id = $(event.target).parent().parent().siblings()
+      .data('id');
+    // const comments = {
+    //   newComment: $(event.target).parent().find('.comment').val(),
+    // };
+    const textId = ($(event.target).parent().find('.cke').attr('id'));
+    const textName = textId.replace('cke_', '');
+    const comments = {
+      newComment: CKEDITOR.instances[textName].getData(),
+    };
+    console.log(textName);
+    console.log(CKEDITOR.instances[textName].getData());
 
     $.ajax({
-      method: "PUT",
-      url: "/api/dashboard/" + id,
-      data: comments
+      method: 'PUT',
+      url: `/api/dashboard/${id}`,
+      data: comments,
     })
-      .then(function () {
-        window.location.href = "/dashboard";
+      .then(() => {
+        window.location.href = '/dashboard';
       });
-
   });
+});
 
+$('.delete').on('click', (e) => {
+  const recId = $(e.target).parent().parent().data('id');
+  const title = $(e.target).parent().parent().find('.title')
+    .html();
+  $('.destroy').data('id', recId);
+  $('.modal-title').text(title);  
+});
+
+$('.destroy').on('click', (e) => {
+  const deletedId = $(e.target).data('id');
+
+  $.ajax({
+    method: 'DELETE',
+    url: `/api/recipe/${deletedId}`,
+  }).then(() => {
+    window.location.href = '/dashboard';
+  });
 });

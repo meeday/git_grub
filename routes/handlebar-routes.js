@@ -18,6 +18,7 @@ router.get('/member', authCheck, (req, res) => {
 });
 
 router.get('/dashboard', authCheck, (req, res) => {
+  console.log(req.user);
   res.render('dashboard', {
     displayName: req.user.displayName,
     firstName: req.user.firstName,

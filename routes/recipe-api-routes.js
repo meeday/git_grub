@@ -5,33 +5,37 @@ const { authCheck } = require('../middleware/auth');
 
 const app = express();
 
-// Find all Recipies and return them to the user with res.json
+// Find all Recipies and return them to the user with res.render
 app.get('/dashboard', (req, res) => {
-    
-  
-  db.findAll({ where: {
-    googleId: req.user.googleId
-  }}).then((dbRecipe) => {
-  
-   res.render("dashboard", { dbRecipe });
+  db.findAll({
+    where: {
+      googleId: req.user.googleId,
+    },
+  }).then((dbRecipe) => {
+    res.render('dashboard',
+      {
+        dbRecipe,
+        displayName: req.user.displayName,
+        firstName: req.user.firstName,
+        surname: req.user.surname,
+        avatar: req.user.avatar,
+        id: req.user.googleId,
+      });
   });
 });
 
-
 // PUT route for create or updating comments
-app.put("/api/dashboard/:id", function (req, res) {
-  console.log(req.body.newComment);
-  
+app.put('/api/dashboard/:id', (req, res) => {
   db.update(
-    
-    {comments: req.body.newComment},
+    { comments: req.body.newComment },
     {
       where: {
-        id: req.params.id
-      }
-    }).then(function (dbRecipe) {
-      res.render('dashboard', { recipe: dbRecipe })
-    });
+        id: req.params.id,
+      },
+    },
+  ).then((dbRecipe) => {
+    res.render('dashboard', { recipe: dbRecipe });
+  });
 });
 
 // Route for search results (all parameters)
@@ -57,7 +61,6 @@ app.get('/api/recipe/:search/:cuisine/:diet/:allergy', authCheck, async (req, re
   }
   try {
     const data = await api.userSearch(searchTerm, cuisinePref, dietPref, allergies);
-    console.log(req.user.googleId);
     const recipeId = (data.results.map((recipe) => recipe.id)).toString();
     const recipeSearch = await api.recipeInBulk(recipeId);
     const instructions = recipeSearch.map((recipe) => ({
@@ -86,9 +89,6 @@ app.get('/api/recipe/:search/:cuisine/:diet/:allergy', authCheck, async (req, re
 });
 
 app.post('/api/recipe', async (req, res) => {
-  // console.log(req.body);
-
-
   db.create({
     id: req.body.id,
     googleId: req.body.googleId,
@@ -99,17 +99,16 @@ app.post('/api/recipe', async (req, res) => {
     vegetarian: req.body.vegetarian,
     imageUrl: req.body.imageUrl,
     time: req.body.time,
-    comments: req.body.comments
+    comments: req.body.comments,
   })
     .then((dbRecipe) => {
-           
       res.status(200);
     });
 });
 
 app.delete('/api/recipe/:id', (req, res) => {
   // Delete the Recipe with the id available to us in req.params.id
-  db.Recipe.destroy({
+  db.destroy({
     where: {
       id: req.params.id,
     },
