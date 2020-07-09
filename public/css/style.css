@@ -127,3 +127,7 @@ p {
     font-size: 2.28rem;
   }
 }
+
+.dropdown-content {
+  top: 100% !important;
+}
