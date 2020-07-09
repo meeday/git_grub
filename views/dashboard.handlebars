@@ -28,6 +28,7 @@
   </li>
   <li><a class="subheader">GET RECIPE~</a></li>
   <li><a href="/member"><i class="material-icons">search</i>Search Recipe</a></li>  
+  <li><a href="/auth/logout"><i class="material-icons left">login</i>Logout</a></li>
 </ul>
 
 <!-- Search Template -->
@@ -48,6 +49,11 @@
   {{#each dbRecipe}}
   <li>
     <div class="collapsible-header blue-grey lighten-1 row valign-wrapper" data-id="{{dataValues.id}}">
+      <div class="row">
+        <div class="col s12">
+          <i class="fas fa-chevron-down"></i>   
+        </div>
+      </div>          
       <div class="col s12 m2"><img class="food-img" src="{{dataValues.imageUrl}}" alt=""></div>
       <div class="col s12 m9">
         <h4 class="title">{{dataValues.title}}</h4>
@@ -64,9 +70,8 @@
         </div>
       </div>
       <div class="col s12 m1 save-box">
-        <a class="waves-effect waves-light btn modal-trigger delete" href="#modal1">Delete</a>
-
-      </div>
+        <a class="waves-effect waves-red btn modal-trigger delete" href="#modal1">Delete</a>         
+      </div>                
     </div>
     <div class="collapsible-body grey blue-grey lighten-5">
       <div class="row summary-row">
@@ -75,7 +80,7 @@
       <div class="row comments-row">
         <h4>Comments</h4>
         <textarea name="comments{{@index}}" class="comment" placeholder="Add any comments here...">{{dataValues.comments}}</textarea>
-        <button class="btn waves-effect waves-light comment-save">Save</button>
+        <button class="btn waves-effect waves-purple comment-save">Save</button>
       </div>
     </div>
   </li>
@@ -94,3 +99,14 @@
       <a href="#!" class="modal-close waves-effect waves-green btn-flat red destroy">Delete</a>
     </div>
   </div>
+  
+  <!-- The Modal -->
+<div id="myModal" class="modal-class save-modal">
+
+  <!-- Modal content -->
+  <div class="modal-content-save">
+    <span class="close">&times;</span>
+    <h4>Your changes have been saved</h4>
+  </div>
+
+</div>

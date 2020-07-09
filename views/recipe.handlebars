@@ -27,8 +27,8 @@
         </div>
     </li>
     <li><a class="subheader">GET RECIPE~</a></li>
-    <li><a href="#!"><i class="material-icons">search</i>Search Recipe</a></li>
     <li><a href="/dashboard"><i class="material-icons">menu_book</i>My Recipes</a></li>
+    <li><a href="/auth/logout"><i class="material-icons left">login</i>Logout</a></li>
 </ul>
 
 <!-- SECONDARY FUNCTION STRUCTURE END HERE -->
@@ -47,7 +47,7 @@
 
     <div id="default-search-input" class="input-field col s12">
         <a href="#!" id="search-icon" class="material-icons white-text prefix">search</a>
-        <input type="text" id="search-query" class="autocomplete white-text"/>
+        <input type="text" id="search-query" class="autocomplete white-text" value="{{searchTerm}}">
         <label class="white-text" for="search-query">Search</label>
     </div>
     <br>
@@ -159,3 +159,14 @@
     </li>
     {{/each}}
 </ul>
+
+  <!-- The Modal -->
+<div id="myModal" class="modal-class save-modal">
+
+  <!-- Modal content -->
+  <div class="modal-content-save">
+    <span class="close">&times;</span>
+    <h4>This recipe has been saved to your list of recipes</h4>
+  </div>
+
+</div>
