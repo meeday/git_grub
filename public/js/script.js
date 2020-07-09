@@ -2,6 +2,12 @@ $('.collapsible .unsaved').on('click', (e) => {
   e.stopPropagation();
 });
 
+$('#search-query').keypress((e) => {
+  if (e.which == 13) {
+    $('#search-icon').click();
+  }
+});
+
 const searchBtn = $('#search-icon');
 const searchQuery = $('#search-query');
 
@@ -61,6 +67,23 @@ $(document).ready(() => {
 
   // click event for save button
   saveToDb.on('click', (event) => {
+    // Get the modal
+    const modal = document.getElementById('myModal');
+
+    // Get the <span> element that closes the modal
+    const span = document.getElementsByClassName('close')[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      modal.style.display = 'none';
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    };
     // get data from ajax call
     const dataTodo = {
       googleId: $('#user-name').data('id'),
@@ -92,11 +115,35 @@ $(document).ready(() => {
         alert(`${data.title}Recipe successfully saved !`);
       },
       complete: false,
+    }).then(() => {
+      console.log('success');
     });
+    modal.style.display = 'block';
   });
 
   // create or update comments
   addComments.on('click', (event) => {
+    // Get the modal
+    const modal = document.getElementById('myModal');
+
+    // Get the button that opens the modal
+    const btn = document.getElementById('myBtn');
+
+    // Get the <span> element that closes the modal
+    const span = document.getElementsByClassName('close')[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      modal.style.display = 'none';
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    };
+
     const id = $(event.target).parent().parent().siblings()
       .data('id');
     // const comments = {
@@ -107,8 +154,6 @@ $(document).ready(() => {
     const comments = {
       newComment: CKEDITOR.instances[textName].getData(),
     };
-    console.log(textName);
-    console.log(CKEDITOR.instances[textName].getData());
 
     $.ajax({
       method: 'PUT',
@@ -116,8 +161,9 @@ $(document).ready(() => {
       data: comments,
     })
       .then(() => {
-        window.location.href = '/dashboard';
+        // window.location.href = '/dashboard';
       });
+    modal.style.display = 'block';
   });
 });
 
@@ -126,7 +172,7 @@ $('.delete').on('click', (e) => {
   const title = $(e.target).parent().parent().find('.title')
     .html();
   $('.destroy').data('id', recId);
-  $('.modal-title').text(title);  
+  $('.modal-title').text(title);
 });
 
 $('.destroy').on('click', (e) => {
