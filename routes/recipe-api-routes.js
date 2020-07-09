@@ -111,7 +111,7 @@ app.post('/api/recipe', async (req, res) => {
     comments: req.body.comments,
   })
     .then((dbRecipe) => {
-      if (dbRecipe.affectedRows == 0) {
+      if (dbRecipe.affectedRows === 0) {
         return res.status(500).end();
       }
 
