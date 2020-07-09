@@ -147,14 +147,14 @@
                 </div>
             </div>
             <div class="col s12 m1 save-box"> 
-                {{#if userId}}              
+                {{#if isInDb}}              
                 <i class="fas fa-heart saved"></i>
                 Already Saved
                 {{/if}}
-                {{#unless userId}}   
+                {{#unless isInDb }}
                 <i class="far fa-heart unsaved"></i>
-                Save recipe to dashboard  
-                {{/unless}}             
+                Save recipe to dashboard    
+                {{/unless}}          
             </div>           
         </div>
         <div class="collapsible-body grey blue-grey lighten-5">
