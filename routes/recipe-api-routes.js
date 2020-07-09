@@ -60,6 +60,13 @@ app.get('/api/recipe/:search/:cuisine/:diet/:allergy', authCheck, async (req, re
     allergies = '';
   }
   try {
+    const recipeList = await db.findAll({
+      where: {
+        googleId: req.user.googleId,
+      },
+      attributes: ['recipeId'],
+    });
+    const idArray = recipeList.map((recipe) => recipe.dataValues.recipeId);
     const data = await api.userSearch(searchTerm, cuisinePref, dietPref, allergies);
     const recipeId = (data.results.map((recipe) => recipe.id)).toString();
     const recipeSearch = await api.recipeInBulk(recipeId);
@@ -72,6 +79,7 @@ app.get('/api/recipe/:search/:cuisine/:diet/:allergy', authCheck, async (req, re
       vegetarian: recipe.vegetarian,
       imageUrl: recipe.image,
       time: recipe.readyInMinutes,
+      isInDb: idArray.includes(recipe.id),
     }));
     res.render('recipe', {
       recipes: instructions,
@@ -102,7 +110,12 @@ app.post('/api/recipe', async (req, res) => {
     comments: req.body.comments,
   })
     .then((dbRecipe) => {
+      if (dbRecipe.affectedRows === 0) {
+        return res.status(500).end();
+      }
+
       res.status(200);
+      //  res.render('recipe', { dbRecipe });
     });
 });
 

@@ -146,10 +146,14 @@
                     {{/if}}
                 </div>
             </div>
-            <div class="col s12 m1 save-box">
-                <i class="far fa-heart unsaved"></i>
-                Click to save to My Recipes
-            </div>
+            <div class="col s12 m1 save-box"> 
+                {{#if isInDb}}              
+                <i class="fas fa-heart saved"></i>
+                {{/if}}
+                {{#unless isInDb }}
+                <i class="fas fa-heart saveBtn"></i>
+                {{/unless}}          
+            </div>           
         </div>
         <div class="collapsible-body grey blue-grey lighten-5">
       <div class="row summary-row">
