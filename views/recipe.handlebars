@@ -122,30 +122,32 @@
 <ul class="collapsible results">
     {{#each recipes}}
     <li>
-        <div class="collapsible-header blue-grey lighten-1 row valign-wrapper" data-id="{{id}}">
-            <div class="col s12 m2"><img class="food-img" src="{{imageUrl}}" alt="{{title}}"></div>
-            <div class="col s12 m9">
-                <h4 class="title">{{title}}</h4>
-                <div class="details">
-                    {{#if cuisine}}
-                    <h6><i class="fas fa-utensils"></i><span class="cuisine">{{cuisine}}</span></h6>
-                    {{/if}}
-                    {{#if vegetarian}}
-                    <h6 class="vegetarian"><i class="fas fa-carrot"></i>Vegetarian</h6>
-                    {{/if}}
-                    {{#if time}}
-                    <h6 ><i class="fas fa-clock"></i></i><span class="time">{{time}}</span> minutes</h6>
-                    {{/if}}
+        <div class="collapsible-header blue-grey lighten-1 valign-wrapper" data-id="{{id}}">
+            <div class="row">
+                <div class="col s12 m1"><img class="food-img" src="{{imageUrl}}" alt="{{title}}"></div>
+                <div class="col s12 m9 offset-m2">
+                    <h4 class="title">{{title}}</h4>
+                    <div class="details">
+                        {{#if cuisine}}
+                        <h6><i class="fas fa-utensils"></i><span class="cuisine">{{cuisine}}</span></h6>
+                        {{/if}}
+                        {{#if vegetarian}}
+                        <h6 class="vegetarian"><i class="fas fa-carrot"></i>Vegetarian</h6>
+                        {{/if}}
+                        {{#if time}}
+                        <h6 ><i class="fas fa-clock"></i></i><span class="time">{{time}}</span> mins</h6>
+                        {{/if}}
+                    </div>
                 </div>
+                <div class="col s12 m1 save-box"> 
+                    {{#if isInDb}}              
+                    <i class="fas fa-heart saved"></i>
+                    {{/if}}
+                    {{#unless isInDb }}
+                    <i class="fas fa-heart saveBtn"></i>
+                    {{/unless}}          
+                </div>           
             </div>
-            <div class="col s12 m1 save-box"> 
-                {{#if isInDb}}              
-                <i class="fas fa-heart saved"></i>
-                {{/if}}
-                {{#unless isInDb }}
-                <i class="fas fa-heart saveBtn"></i>
-                {{/unless}}          
-            </div>           
         </div>
         <div class="collapsible-body grey blue-grey lighten-5">
       <div class="row summary-row">
