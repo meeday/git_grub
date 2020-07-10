@@ -18,12 +18,14 @@
     <li>
         <div class="user-view">
             <div class="background">
-                <img src="https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80">
+                <img
+                    src="https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80">
             </div>
             <!-- User Detail after login -->
             <!-- CAUTION!!! PLACE HOLDER CONTAINED!!!! -->
             <a href="#user"><img class="circle" id="user-icon" src="{{avatar}}"></a>
-            <a href="#name"><span class="white-text name" id="user-name" data-id="{{googleId}}">{{displayName}}</span></a>
+            <a href="#name"><span class="white-text name" id="user-name"
+                    data-id="{{googleId}}">{{displayName}}</span></a>
             <br>
         </div>
     </li>
@@ -37,26 +39,18 @@
 
 <!-- Search Template -->
 <div class="container landing-page">
-    <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
-            <h1 class="center white-text">Get Grub</h1>
-            <div class="row center">
-            </div>
-        </div>
-    </div>
-    <br>
-
-    <div id="default-search-input" class="input-field col s12">
-        <a href="#!" id="search-icon" class="material-icons white-text prefix">search</a>
-        <input type="text" id="search-query" class="autocomplete white-text" value="{{searchTerm}}">
-        <label class="white-text" for="search-query">Search</label>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <h1 class="center white-text">Get Grub</h1>
+      <div class="row center">
+      </div>
     </div>
   </div>
   <br>
 
   <div id="default-search-input" class="input-field col s12">
     <a href="#!" id="search-icon" class="material-icons white-text prefix">search</a>
-    <input type="text" id="search-query" class="autocomplete white-text" />
+    <input type="text" id="search-query" class="autocomplete white-text" value="{{searchTerm}}">
     <label class="white-text" for="search-query">Search</label>
   </div>
   <br>
@@ -121,19 +115,15 @@
   </div>
 </div>
 
-
-
-</div>
-
-  <div class="loading display-none"></div>
+<div class="loading display-none"></div>
 
 <ul class="collapsible results">
     {{#each recipes}}
     <li>
-        <div class="collapsible-header blue-grey lighten-1 valign-wrapper" data-id="{{id}}">
-            <div class="row">
-                <div class="col s12 m1"><img class="food-img" src="{{imageUrl}}" alt="{{title}}"></div>
-                <div class="col s12 m9 offset-m2">
+        <div class="collapsible-header blue-grey lighten-1 row" data-id="{{id}}">
+            <div class="row1">
+                <div class="col s12 m2"><img class="food-img" src="{{imageUrl}}" alt="{{title}}"></div>
+                <div class="col s12 m9">
                     <h4 class="title">{{title}}</h4>
                     <div class="details">
                         {{#if cuisine}}
@@ -143,36 +133,36 @@
                         <h6 class="vegetarian"><i class="fas fa-carrot"></i>Vegetarian</h6>
                         {{/if}}
                         {{#if time}}
-                        <h6 ><i class="fas fa-clock"></i></i><span class="time">{{time}}</span> mins</h6>
+                        <h6><i class="fas fa-clock"></i></i><span class="time">{{time}}</span> mins</h6>
                         {{/if}}
                     </div>
                 </div>
-                <div class="col s12 m1 save-box"> 
-                    {{#if isInDb}}              
-                    <i class="fas fa-heart saved"></i>
+                <div class="col s12 m1 save-box">
+                    {{#if isInDb}}
+                    <i class="fas fa-heart saved tooltipped" data-position="bottom" data-tooltip="Saved to your recipes"></i>
                     {{/if}}
                     {{#unless isInDb }}
-                    <i class="fas fa-heart saveBtn"></i>
-                    {{/unless}}          
-                </div>           
+                    <i class="fas fa-heart saveBtn tooltipped" data-position="bottom" data-tooltip="Click to save"></i>
+                    {{/unless}}
+                </div>
             </div>
         </div>
         <div class="collapsible-body grey blue-grey lighten-5">
-      <div class="row summary-row">
-        <span class="summary">{{summary}}</span>
-      </div>  
+            <div class="row summary-row">
+                <span class="summary">{{summary}}</span>
+            </div>
     </li>
     <br>
     {{/each}}
 </ul>
 
-  <!-- The Modal -->
+<!-- The Modal -->
 <div id="myModal" class="modal-class save-modal">
 
-  <!-- Modal content -->
-  <div class="modal-content-save">
-    <span class="close">&times;</span>
-    <h4>This recipe has been saved to your list of recipes</h4>
-  </div>
+    <!-- Modal content -->
+    <div class="modal-content-save">
+        <span class="close">&times;</span>
+        <h4>This recipe has been saved to your list of recipes</h4>
+    </div>
 
 </div>

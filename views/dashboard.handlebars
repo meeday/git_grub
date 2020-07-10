@@ -18,7 +18,8 @@
   <li>
     <div class="user-view">
       <div class="background">
-        <img src="https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80">
+        <img
+          src="https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80">
       </div>
       <!-- User Detail after login -->
       <!-- CAUTION!!! PLACE HOLDER CONTAINED!!!! -->
@@ -27,7 +28,7 @@
     </div>
   </li>
   <li><a class="subheader">GET RECIPE~</a></li>
-  <li><a href="/member"><i class="material-icons">search</i>Search Recipe</a></li>  
+  <li><a href="/member"><i class="material-icons">search</i>Search Recipe</a></li>
   <li><a href="/auth/logout"><i class="material-icons left">login</i>Logout</a></li>
 </ul>
 
@@ -48,38 +49,36 @@
 <ul class="collapsible results">
   {{#each dbRecipe}}
   <li>
-    <div class="collapsible-header blue-grey lighten-1 row valign-wrapper" data-id="{{dataValues.id}}">
-      <div class="row">
-        <div class="col s12">
-          <i class="fas fa-chevron-down"></i>   
+    <div class="collapsible-header blue-grey lighten-1 row" data-id="{{dataValues.id}}">
+      <div class="row1">        
+        <div class="col s12 m2"><img class="food-img" src="{{dataValues.imageUrl}}" alt=""></div>
+        <div class="col s12 m8">
+          <h4 class="title">{{dataValues.title}}</h4>
+          <div class="details">
+            {{#if dataValues.cuisine}}
+            <h6><i class="fas fa-utensils"></i><span class="cuisine">{{dataValues.cuisine}}</span></h6>
+            {{/if}}
+            {{#if dataValues.vegetarian}}
+            <h6 class="vegetarian"><i class="fas fa-carrot"></i>Vegetarian</h6>
+            {{/if}}
+            {{#if dataValues.time}}
+            <h6 class="this.time"><i class="fas fa-clock"></i></i>{{dataValues.time}} minutes</h6>
+            {{/if}}
+          </div>
         </div>
-      </div>          
-      <div class="col s12 m2"><img class="food-img" src="{{dataValues.imageUrl}}" alt=""></div>
-      <div class="col s12 m9">
-        <h4 class="title">{{dataValues.title}}</h4>
-        <div class="details">
-          {{#if dataValues.cuisine}}
-          <h6><i class="fas fa-utensils"></i><span class="cuisine">{{dataValues.cuisine}}</span></h6>
-          {{/if}}
-          {{#if dataValues.vegetarian}}
-          <h6 class="vegetarian"><i class="fas fa-carrot"></i>Vegetarian</h6>
-          {{/if}}
-          {{#if dataValues.time}}
-          <h6 class="this.time"><i class="fas fa-clock"></i></i>{{dataValues.time}} minutes</h6>
-          {{/if}}
+        <div class="col s12 m1 save-box">
+          <a class="waves-effect waves-red btn modal-trigger delete" href="#modal1">Delete</a>
         </div>
       </div>
-      <div class="col s12 m1 save-box">
-        <a class="waves-effect waves-red btn modal-trigger delete" href="#modal1">Delete</a>         
-      </div>                
     </div>
     <div class="collapsible-body grey blue-grey lighten-5">
       <div class="row summary-row">
         <span class="summary">{{dataValues.summary}}</span>
-      </div>      
+      </div>
       <div class="row comments-row">
         <h4>Comments</h4>
-        <textarea name="comments{{@index}}" class="comment" placeholder="Add any comments here...">{{dataValues.comments}}</textarea>
+        <textarea name="comments{{@index}}" class="comment"
+          placeholder="Add any comments here...">{{dataValues.comments}}</textarea>
         <button class="btn waves-effect waves-purple comment-save">Save</button>
       </div>
     </div>
@@ -90,17 +89,17 @@
 <h1 class="no-recipes">You do not have any saved recipes</h1>
 {{/unless}}
 <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4 class="modal-title"></h4><br>
-      <p>Are you sure you wish to delete this recipe from your dashboard?</p>
-      
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat red destroy">Delete</a>
-    </div>
+  <div class="modal-content">
+    <h4 class="modal-title"></h4><br>
+    <p>Are you sure you wish to delete this recipe from your dashboard?</p>
+
   </div>
-  
-  <!-- The Modal -->
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat red destroy">Delete</a>
+  </div>
+</div>
+
+<!-- The Modal -->
 <div id="myModal" class="modal-class save-modal">
 
   <!-- Modal content -->
