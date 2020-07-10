@@ -33,8 +33,8 @@ app.put('/api/dashboard/:id', (req, res) => {
         id: req.params.id,
       },
     },
-  ).then((dbRecipe) => {
-    res.render('dashboard', { recipe: dbRecipe });
+  ).then(() => {
+    res.status(200);
   });
 });
 
