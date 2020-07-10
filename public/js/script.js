@@ -85,6 +85,8 @@ $(document).ready(() => {
       }
     };
     $(event.target).addClass('saved');
+    console.log($(event.target).data('tooltip'));
+    $(event.target).attr('data-tooltip', 'Saved to your recipes');
     // get data from ajax call
     const dataTodo = {
       googleId: $('#user-name').data('id'),
