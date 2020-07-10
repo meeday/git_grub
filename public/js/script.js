@@ -2,6 +2,11 @@ $('.collapsible .unsaved').on('click', (e) => {
   e.stopPropagation();
 });
 
+$(document).click(() => {
+  $('.select-dropdown').addClass('white-text');
+  $('.caret').addClass('white');
+})
+
 $('#search-query').keypress((e) => {
   if (e.which == 13) {
     $('#search-icon').click();
@@ -62,6 +67,7 @@ searchBtn.on('click', async () => {
 });
 
 $(document).ready(() => {
+  $('.caret').addClass('white');
   const saveToDb = $('.saveBtn');
   const addComments = $('.comment-save');
 
@@ -84,17 +90,16 @@ $(document).ready(() => {
         modal.style.display = 'none';
       }
     };
-    $(event.target).addClass('saved');
-    console.log($(event.target).data('tooltip'));
+    $(event.target).addClass('saved');    
     $(event.target).attr('data-tooltip', 'Saved to your recipes');
     // get data from ajax call
     const dataTodo = {
       googleId: $('#user-name').data('id'),
-      recipeId: $(event.target).parent().parent().data('id'),
-      id: ($('#user-name').data('id')) + ($(event.target).parent().parent().data('id')),
+      recipeId: $(event.target).parent().parent().parent().data('id'),
+      id: ($('#user-name').data('id')) + ($(event.target).parent().parent().parent().data('id')),
       title: $(event.target).parent().parent().find('.title')
         .html(),
-      summary: $(event.target).parent().parent().parent()
+      summary: $(event.target).parent().parent().parent().parent()
         .find('.summary')
         .html(),
       cuisine: $(event.target).parent().parent().parent()
@@ -109,6 +114,7 @@ $(document).ready(() => {
         .html(),
       comments: null,
     };
+    console.log(dataTodo);
 
     $.ajax({
       type: 'POST',
@@ -171,7 +177,8 @@ $(document).ready(() => {
 });
 
 $('.delete').on('click', (e) => {
-  const recId = $(e.target).parent().parent().data('id');
+  const recId = $(e.target).parent().parent().parent().data('id');
+  console.log(recId);
   const title = $(e.target).parent().parent().find('.title')
     .html();
   $('.destroy').data('id', recId);
