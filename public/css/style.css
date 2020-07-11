@@ -137,6 +137,20 @@ p {
   display: block;
 }
 
+.modal h4 {
+  text-align: -webkit-center;
+  
+}
+
+.modal-content-save {
+  background-color: #009688 !important;
+  color: white;
+}
+.modal-content {
+  background-color: #009688;
+  color: white;
+}
+
 .modal-class {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
