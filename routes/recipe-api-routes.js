@@ -6,7 +6,7 @@ const { authCheck } = require('../middleware/auth');
 const app = express();
 
 // Find all Recipies and return them to the user with res.render
-app.get('/dashboard', (req, res) => {
+app.get('/dashboard', authCheck, (req, res) => {
   db.findAll({
     where: {
       googleId: req.user.googleId,

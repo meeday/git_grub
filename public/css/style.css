@@ -189,6 +189,17 @@ p {
   min-height: 100% !important;
 }
 
+.row1 {
+  min-width: 100%;
+}
+
+.save-box {  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
 @media only screen and (min-width: 768px) {
   .results {
     max-width: 80%;
@@ -203,8 +214,14 @@ p {
   h4 {
     font-size: 2.28rem;
   }
+  
+  .save-box {
+    height: 100%;
+    margin-top: auto;
+  }
 }
 
 .dropdown-content {
   top: 100% !important;
 }
+
