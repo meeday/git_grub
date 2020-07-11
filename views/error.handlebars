@@ -24,7 +24,7 @@
       <!-- User Detail after login -->
       <!-- CAUTION!!! PLACE HOLDER CONTAINED!!!! -->
       <a href="#user"><img class="circle" id="user-icon" src="{{avatar}}"></a>
-      <a href="#name"><span class="white-text name" id="user-name" data-id="{{googleId}}">{{displayName}}</span></a>
+      <a href="#name"><span class="white-text name" id="user-name" data-id="{{id}}">{{displayName}}</span></a>
       <br>
     </div>
   </li>
@@ -116,55 +116,13 @@
 
 <div class="loading display-none"></div>
 
-<ul class="collapsible results">
-  {{#each recipes}}
-  <li>
-    <div class="collapsible-header blue-grey lighten-1 row" data-id="{{id}}">
-      <div class="row1">
-        <div class="col s12 m2 img-box"><img class="food-img" src="{{imageUrl}}" alt="{{title}}"></div>
-        <div class="col s12 m9">
-          <h4 class="title">{{title}}</h4>
-          <div class="details">
-            {{#if cuisine}}
-            <h6><i class="fas fa-utensils"></i><span class="cuisine">{{cuisine}}</span></h6>
-            {{/if}}
-            {{#if vegetarian}}
-            <h6 class="vegetarian"><i class="fas fa-carrot"></i>Vegetarian</h6>
-            {{/if}}
-            {{#if time}}
-            <h6><i class="fas fa-clock"></i></i><span class="time">{{time}}</span> mins</h6>
-            {{/if}}
-          </div>
-          <div>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-        </div>
-        <div class="col s12 m1 save-box">
-          {{#if isInDb}}
-          <i class="fas fa-heart saved tooltipped" data-position="bottom" data-tooltip="Saved to your recipes"></i>
-          {{/if}}
-          {{#unless isInDb }}
-          <i class="fas fa-heart saveBtn tooltipped" data-position="bottom" data-tooltip="Click to save"></i>
-          {{/unless}}
-        </div>
+  <div class="row center-align">
+    <div class="col s12 m6 offset-m3">
+      <div class="card error-card darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Sorry</span>
+          <p>We couldn't find any results matching your search criteria. Please try again.</p>
+        </div>        
       </div>
     </div>
-    <div class="collapsible-body grey blue-grey lighten-5">
-      <div class="row summary-row">
-        <span class="summary">{{summary}}</span>
-      </div>
-  </li>
-  <br>
-  {{/each}}
-</ul>
-
-<!-- The Modal -->
-<div id="myModal" class="modal-class save-modal">
-
-  <!-- Modal content -->
-  <div class="modal-content-save">
-    <span class="close">&times;</span>
-    <h4>This recipe has been saved to your list of recipes</h4>
   </div>
-
-</div>

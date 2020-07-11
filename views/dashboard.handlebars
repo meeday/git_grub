@@ -47,11 +47,11 @@
 
 
 <ul class="collapsible results">
-  {{#each dbRecipe}}
+  {{#each result}}
   <li>
     <div class="collapsible-header blue-grey lighten-1 row" data-id="{{dataValues.id}}">
       <div class="row1">        
-        <div class="col s12 m2"><img class="food-img" src="{{dataValues.imageUrl}}" alt=""></div>
+        <div class="col s12 m2 img-box"><img class="food-img" src="{{dataValues.imageUrl}}" alt=""></div>
         <div class="col s12 m8">
           <h4 class="title">{{dataValues.title}}</h4>
           <div class="details">
@@ -65,8 +65,11 @@
             <h6 class="this.time"><i class="fas fa-clock"></i></i>{{dataValues.time}} minutes</h6>
             {{/if}}
           </div>
+          <div>
+            <i class="fas fa-chevron-down"></i>
+          </div>
         </div>
-        <div class="col s12 m1 save-box">
+        <div class="col s12 m2 save-box">
           <a class="waves-effect waves-red btn modal-trigger delete" href="#modal1">Delete</a>
         </div>
       </div>
@@ -85,7 +88,7 @@
   </li>
   {{/each}}
 </ul>
-{{#unless dbRecipe}}
+{{#unless result}}
 <h1 class="no-recipes">You do not have any saved recipes</h1>
 {{/unless}}
 <div id="modal1" class="modal">
