@@ -1,0 +1,128 @@
+{{!-- search --}}
+<!-- TOP ROW BUTTON -->
+<div class="row">
+  <!-- Side Nav Button -->
+  <a href="#" data-target="slide-out" class="sidenav-trigger waves-effect waves-light findbtn btn-large white-text">
+    <i class="material-icons left">menu</i>Menu
+  </a>
+  <!-- Logout Button -->
+  <a class="waves-effect waves-light btn modal-trigger findbtn btn-large right" href="/auth/logout">
+    <i class="material-icons left">login</i>LOGOUT
+  </a>
+</div>
+
+<!-- SECONDARY FUNCTION STRUCTURE START HERE -->
+
+<!-- Side Nav Structure -->
+<ul id="slide-out" class="sidenav">
+  <li>
+    <div class="user-view">
+      <div class="background">
+        <img
+          src="https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80">
+      </div>
+      <!-- User Detail after login -->
+      <!-- CAUTION!!! PLACE HOLDER CONTAINED!!!! -->
+      <a href="#user"><img class="circle" id="user-icon" src="{{avatar}}"></a>
+      <a href="#name"><span class="white-text name" id="user-name" data-id="{{id}}">{{displayName}}</span></a>
+      <br>
+    </div>
+  </li>
+  <li><a class="subheader">GET RECIPE~</a></li>
+  <li><a href="/dashboard"><i class="material-icons">menu_book</i>My Recipes</a></li>
+  <li><a href="/auth/logout"><i class="material-icons left">login</i>Logout</a></li>
+</ul>
+
+<!-- SECONDARY FUNCTION STRUCTURE END HERE -->
+
+
+<!-- Search Template -->
+<div class="container landing-page">
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <h1 class="center white-text">Get Grub</h1>
+      <div class="row center">
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div id="default-search-input" class="input-field col s12">
+    <a href="#!" id="search-icon" class="material-icons white-text prefix">search</a>
+    <input type="text" id="search-query" class="autocomplete white-text" value="{{searchTerm}}">
+    <label class="white-text" for="search-query">Search</label>
+  </div>
+  <br>
+  <!-- Cuisine Form -->
+  <div class="row">
+    <div id="cuisine-dropdown" class="input-field col s4">
+      <select class="cuisine" multiple>
+        <option value="1">African</option>
+        <option value="2">British</option>
+        <option value="3">Caribbean</option>
+        <option value="4">Chinese</option>
+        <option value="5">Cajun</option>
+        <option value="6">French</option>
+        <option value="7">European</option>
+        <option value="8">Greek</option>
+        <option value="9">Italian</option>
+        <option value="10">Japanese</option>
+        <option value="11">Jewish</option>
+        <option value="12">Korean</option>
+        <option value="13">Mexican</option>
+        <option value="14">Mediterranean</option>
+        <option value="15">Middle Eastern</option>
+        <option value="16">Indian</option>
+        <option value="17">Thai</option>
+        <option value="18">Spanish</option>
+        <option value="19">Latin American</option>
+        <option value="20">American</option>
+      </select>
+      <label class="white-text">Cuisine</label>
+    </div>
+
+    <div id="diet-dropdown" class="input-field col s4">
+      <select class="diet" multiple>
+        <option value="1">Gluten Free</option>
+        <option value="2">Ketogenic</option>
+        <option value="3">Vegetarian</option>
+        <option value="4">Vegan</option>
+        <option value="5">Pescetarian</option>
+        <option value="6">Paleo</option>
+      </select>
+      <label class="white-text">Diet</label>
+    </div>
+
+    <!-- Intolerance Form -->
+    <div id="intolerance-dropdown" class="input-field col s4">
+      <select class="intolerance" multiple>
+        <option value="1">Dairy</option>
+        <option value="2">Egg</option>
+        <option value="3">Gluten</option>
+        <option value="4">Grain</option>
+        <option value="5">Peanut</option>
+        <option value="6">Seafood</option>
+        <option value="7">Sesame</option>
+        <option value="8">Shellfish</option>
+        <option value="9">Soy</option>
+        <option value="10">Sulfite</option>
+        <option value="11">Tree Nut</option>
+        <option value="12">Wheat</option>
+      </select>
+      <label class="white-text">Intolerance</label>
+    </div>
+  </div>
+</div>
+
+<div class="loading display-none"></div>
+
+  <div class="row center-align">
+    <div class="col s12 m6 offset-m3">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Sorry</span>
+          <p>We couldn't find any results matching your search criteria. Please try again.</p>
+        </div>        
+      </div>
+    </div>
+  </div>
