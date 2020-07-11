@@ -141,6 +141,11 @@ p {
   text-align: -webkit-center;
   
 }
+
+.modal-content-save {
+  background-color: #009688 !important;
+  color: white;
+}
 .modal-content {
   background-color: #009688;
   color: white;
