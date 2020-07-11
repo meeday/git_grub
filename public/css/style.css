@@ -197,6 +197,10 @@ p {
   justify-content: center;
 }
 
+.error-card {
+  background-color: #009688;
+}
+
 @media only screen and (min-width: 768px) {
   .results {
     max-width: 80%;
