@@ -1,4 +1,4 @@
-$('.collapsible .unsaved').on('click', (e) => {
+$('.collapsible .saveBtn').on('click', (e) => {
   e.stopPropagation();
 });
 
