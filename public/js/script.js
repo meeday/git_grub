@@ -15,7 +15,7 @@ searchBtn.on('click', async () => {
   $(document).ajaxStart(() => {
     $('.loading').removeClass('display-none');
   });
-
+  
   // Hide loading spinner and show search button when ajax call completes
 
   $(document).ajaxStop(() => {
