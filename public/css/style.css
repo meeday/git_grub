@@ -2,7 +2,6 @@ html body {
   height: 100%;
 }
 
-
 .left-padding {
   padding-left: 5px !important;
 }
@@ -112,6 +111,10 @@ p {
   margin: 20px auto;
 }
 
+.select-dropdown {
+  color: #fff !important;
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -137,6 +140,8 @@ p {
   display: block;
 }
 
+/* Modal styling */
+
 .modal h4 {
   text-align: -webkit-center;
   
@@ -152,30 +157,29 @@ p {
 }
 
 .modal-class {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
 }
 
-/* Modal Content/Box */
+/* Modal content styling */
 .modal-content-save {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 60%; /* Could be more or less, depending on screen size */
+  width: 60%;
   text-align: center;
   border-radius: 10px;
 }
 
-/* The Close Button */
 .close {
   color: #aaa;
   float: right;
@@ -214,6 +218,8 @@ p {
 .error-card {
   background-color: #009688;
 }
+
+/* Responsiveness */
 
 @media only screen and (min-width: 768px) {
   .results {
