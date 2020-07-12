@@ -1,5 +1,4 @@
 const { DataTypes } = require('sequelize');
-
 const sequelize = require('../config/db').sequelize();
 
 const Recipe = sequelize.define('Recipe', {
@@ -53,6 +52,7 @@ const Recipe = sequelize.define('Recipe', {
   },
 });
 
+// Create table in the DB using sync method
 Recipe.sync();
 
 module.exports = Recipe;
