@@ -26,8 +26,10 @@ passport.use(
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     },
+    // Callback function when a user logs in through Google OAuth
     async (accessToken, refreshToken, profile, done) => {
       try {
+        // Create a new object using data from the Google profile object
         const newUser = {
           id: await uuid.v4(),
           googleId: profile.id,
@@ -36,6 +38,7 @@ passport.use(
           surname: profile.name.familyName,
           avatar: profile.photos[0].value,
         };
+        // Search the Users table to identify if Google ID already exists. If the Google ID does not exist, create a new user in the DB
         let user = await User.findOne({
           where: { googleId: profile.id },
         });
