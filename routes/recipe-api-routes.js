@@ -38,7 +38,7 @@ app.put('/api/dashboard/:id', async (req, res) => {
         },
       },
     );
-    res.status(200);
+    res.json(200);
   } catch (err) {
     console.error('ERROR - recipe-api-routes.js - put/api/dashboard/:id', err);
   }
@@ -122,12 +122,10 @@ app.post('/api/recipe', async (req, res) => {
       imageUrl: req.body.imageUrl,
       time: req.body.time,
       comments: req.body.comments,
-    });
-    if (data.affectedRows === 0) {
-      return res.status(500).end();
-    }
-    res.status(200);
+    });    
+    res.json(data);
   } catch (err) {
+    res.status(400);
     console.error('ERROR - recipe-api-routes.js - post/api/recipe', err);
   }
 });
