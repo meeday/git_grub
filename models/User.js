@@ -1,5 +1,4 @@
 const { DataTypes } = require('sequelize');
-
 const sequelize = require('../config/db').sequelize();
 
 const User = sequelize.define('User', {
@@ -35,6 +34,7 @@ const User = sequelize.define('User', {
   },
 });
 
+// Create table in DB using sync method
 User.sync();
 
 module.exports = User;

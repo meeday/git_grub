@@ -30,7 +30,7 @@ router.get('/dashboard', authCheck, (req, res) => {
 
 router.get('/error', authCheck, (req, res) => {
   res.render('error');
-})
+});
 
 router.get('*', guestCheck, (req, res) => {
   res.render('guest');
